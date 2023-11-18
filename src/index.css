@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  color-scheme: dark;
+}
+html {
+  color: #fffef1;
+  background-color: #17181d;
+  font-family: Graphik, sans-serif;
+  font-size: 19px;
+  line-height: 1.5;
+}
+body {
+  min-height: 100vh;
+  min-width: 390px;
+}
+/* utilidades */
+.webkit-line-clamp-1,
+.webkit-line-clamp-2,
+.webkit-line-clamp-3,
+.webkit-line-clamp-4,
+.webkit-line-clamp-5 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.webkit-line-clamp-1 {
+  -webkit-line-clamp: 1;
+}
+.webkit-line-clamp-2 {
+  -webkit-line-clamp: 2;
+}
+.webkit-line-clamp-3 {
+  -webkit-line-clamp: 3;
+}
+.webkit-line-clamp-4 {
+  -webkit-line-clamp: 4;
+}
+.webkit-line-clamp-5 {
+  -webkit-line-clamp: 5;
+}
+/* animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* storie */
+.scroll-view-hidden::-webkit-scrollbar {
+  display: none;
+}
+.scroll-view-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.storie:hover .storie__imagen {
+  transform: scale(1.05);
+}
+
+.storie:hover .storie__overlay {
+  opacity: 0.65;
+}
+/* DIVIDER */
+.divider {
+  width: 100%;
+  height: 1px;
+  max-width: 1200px;
+  background-image: linear-gradient(90deg, rgba(71, 71, 65, 0), #474741 50%, rgba(71, 71, 65, 0));
+  margin-top: 60px;
+  margin-bottom: 60px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* medium-grid-cols-1 */
+@media (max-width: 450px) {
+  .medium-grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+/*  */
+.linear-gradient {
+  background-image: linear-gradient(114.41deg, #0ae448 20.74%, #abff84 65.5%);
+}
+/* fadeInReactions */
+@keyframes fadeInReactions {
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(500px);
+  }
+  100% {
+    max-width: 500px;
+    display: flex;
+  }
+}
+
+/* fadeOutReactions */
+@keyframes fadeOutReactions {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(500px);
+  }
+  from {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+  }
+  100% {
+    width: 0;
+    max-width: 0;
+  }
+}
