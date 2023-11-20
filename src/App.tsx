@@ -14,29 +14,32 @@ import SubscriptionPlansPage from '@/subscription-plans/pages/SubscriptionPlansP
 import NotFoundPage from '@/shared/pages/NotFoundPage';
 import ConfirmationPage from '@/auth/pages/ConfirmationPage';
 import StoriesPage from '@/stories/pages/StoriesPage';
+import StoriesProvider from '@/stories/providers/StoriesProvider';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/auth" element={<AuthLayout />}>
-          <Route index element={<Navigate to="/auth/login" />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegistePage />} />
-          <Route path="recover-password" element={<RecoverPasswordPage />} />
-          <Route path="new-password/:token" element={<NewPasswordPage />} />
-          <Route path="confirmation/:token" element={<ConfirmationPage />} />
-        </Route>
+      <StoriesProvider>
+        <Routes>
+          <Route path="/auth" element={<AuthLayout />}>
+            <Route index element={<Navigate to="/auth/login" />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegistePage />} />
+            <Route path="recover-password" element={<RecoverPasswordPage />} />
+            <Route path="new-password/:token" element={<NewPasswordPage />} />
+            <Route path="confirmation/:token" element={<ConfirmationPage />} />
+          </Route>
 
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="subscription-plans" element={<SubscriptionPlansPage />} />
-        </Route>
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="subscription-plans" element={<SubscriptionPlansPage />} />
+          </Route>
 
-        <Route path="stories/:storie" element={<StoriesPage />} />
+          <Route path="stories/:storie" element={<StoriesPage />} />
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </StoriesProvider>
     </BrowserRouter>
   );
 };

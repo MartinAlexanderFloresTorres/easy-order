@@ -1,18 +1,7 @@
-import { useState } from 'react';
-import ModalStorie from '@/stories/components/ModalStorie';
+import useStories from '../hooks/useStories';
 
 const Storie = () => {
-  const [showStorie, setShowStorie] = useState(false);
-
-  const openStorie = () => {
-    window.history.pushState({}, '', '/stories/1');
-    setShowStorie(true);
-  };
-
-  const closeStorie = () => {
-    window.history.pushState({}, '', '/');
-    setShowStorie(false);
-  };
+  const { openStorie } = useStories();
 
   return (
     <>
@@ -22,7 +11,7 @@ const Storie = () => {
             <img className="block w-full h-full rounded-full" src="/user.webp" alt="usuario" />
           </div>
 
-          <button onClick={openStorie} draggable={false}>
+          <button onClick={() => openStorie('1')} draggable={false}>
             <img
               className="storie__imagen absolute inset-0 w-full h-full object-cover transition-all duration-300"
               src="https://scontent.flim3-2.fna.fbcdn.net/v/t51.36329-10/401891693_573161371619877_8391696264865281664_n.jpg?stp=dst-jpg_s280x280&_nc_cat=102&ccb=1-7&_nc_sid=1a7029&_nc_ohc=EwY5s_Qx2ggAX9TYnLv&_nc_ht=scontent.flim3-2.fna&oh=00_AfCWxPspSWMVLr6bpj5_zSfMf9NhZwmet19Bw3IVgzJ5dg&oe=65594284"
@@ -33,8 +22,6 @@ const Storie = () => {
           </button>
         </div>
       </div>
-
-      {showStorie && <ModalStorie showClose={true} stories={[]} onClose={closeStorie} />}
     </>
   );
 };

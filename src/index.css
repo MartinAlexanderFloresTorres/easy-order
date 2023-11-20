@@ -20,6 +20,9 @@ body {
   min-height: 100vh;
   min-width: 390px;
 }
+button {
+  line-height: normal;
+}
 /* utilidades */
 .webkit-line-clamp-1,
 .webkit-line-clamp-2,

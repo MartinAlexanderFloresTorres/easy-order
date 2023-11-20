@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
+import Avatar from '@/shared/components/Avatar';
 
 interface UserProps {
   className?: string;
@@ -11,12 +12,10 @@ interface UserProps {
 const User = ({ className, style = {}, mediaHiddenNameAndLocation = false, children }: UserProps) => {
   return (
     <div
-      className={twMerge('select-none flex items-center gap-2 text-zinc-300 hover:text-zinc-200 transition-all duration-300', className)}
+      className={twMerge('leading-none select-none flex items-center gap-2 text-zinc-300 hover:text-zinc-200 transition-all duration-300', className)}
       style={style}
     >
-      <button className="w-9 h-9 min-w-[50px] min-h-[50px] select-none flex items-center border-[3px] border-pink-600 border-opacity-80 hover:border-opacity-100 bg-zinc-800 justify-center rounded-full cursor-pointer transition-all">
-        <img className="block w-full h-full rounded-full" src="/user.webp" alt="usuario" />
-      </button>
+      <Avatar />
       <div className={twMerge('w-full h-fit flex flex-col justify-center gap-[3px]', mediaHiddenNameAndLocation ? 'hidden md:flex' : '')}>
         <Link to={'/'} draggable={false} className="text-[16px] font-bold webkit-line-clamp-1">
           White dev

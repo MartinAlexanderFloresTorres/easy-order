@@ -5,14 +5,12 @@ import Menu from '@/shared/components/Menu';
 import User from '@/shared/components/User';
 import ModalLogin from '@/auth/components/ModalLogin';
 import ModalRegister from '@/auth/components/ModalRegister';
-import MenuCategories from '@/shared/components/MenuCategories';
 import Search from '@/shared/components/Search';
 
 const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [isOpenRegister, setIsOpenRegister] = useState(false);
-  const [isShowCategories, setIsShowCategories] = useState(false);
 
   const onCloseMenu = () => setIsOpenMenu(false);
   const onOpenMenu = () => setIsOpenMenu(true);
@@ -51,7 +49,6 @@ const Header = () => {
                 type="button"
                 className="w-fit text-center whitespace-nowrap bg-gradient-to-l from-pink-700 to-pink-400 transition-all duration-100 p-[1px] uppercase text-xs font-semibold"
                 onClick={onOpenLogin}
-                onMouseEnter={() => setIsShowCategories(false)}
               >
                 <div className="px-4 py-[10px] text-center bg-zinc-900 text-pink-600 hover:text-pink-500 transition-all duration-300">
                   Inicio de sesión
@@ -61,7 +58,6 @@ const Header = () => {
                 type="button"
                 className="w-fit text-center whitespace-nowrap bg-gradient-to-l from-purple-700 to-purple-400 transition-all duration-100 p-[1px] uppercase text-xs font-semibold"
                 onClick={onOpenRegister}
-                onMouseEnter={() => setIsShowCategories(false)}
               >
                 <div className="px-4 py-[10px] text-center bg-zinc-900 text-purple-600 hover:text-purple-500 transition-all duration-300">
                   Registro
@@ -73,13 +69,11 @@ const Header = () => {
               type="button"
               className="flex items-center gap-2 w-12 h-12 justify-center rounded-full hover:bg-zinc-800 hover:bg-opacity-20 transition-all text-zinc-100 text-sm font-semibold"
               onClick={onOpenMenu}
-              onMouseEnter={() => setIsShowCategories(false)}
             >
               <MenuIcon size={28} />
             </button>
           </div>
         </header>
-        <MenuCategories isOpen={isShowCategories} onClose={() => setIsShowCategories(false)} />
       </div>
 
       {isOpenMenu && <Menu onClose={onCloseMenu} onOpenLogin={onOpenLogin} onOpenRegister={onOpenRegister} />}

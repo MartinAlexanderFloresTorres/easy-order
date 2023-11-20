@@ -1,5 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import useBodyOverflow from '@/shared/hooks/useBodyOverflow';
+import Overlay from '@/shared/components/Overlay';
 
 interface ModalProps {
   children: React.ReactNode;
@@ -24,5 +25,7 @@ const Modal = ({ children, className = 'bg-zinc-900', isClose, onClose, style }:
     </div>
   );
 };
+
+Modal.Overlay = Overlay;
 
 export default Modal;
