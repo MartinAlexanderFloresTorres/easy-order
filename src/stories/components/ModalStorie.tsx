@@ -157,7 +157,7 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
             }}
           >
             <div className="w-full sm:w-[54vh] mx-auto h-full">
-              <div className="flex flex-col p-2 bg-zinc-800 rounded-md h-full">
+              <div className="relative z-10 flex flex-col p-2 bg-zinc-800 rounded-md h-full">
                 <div className="w-full h-[4px] bg-zinc-700 mb-2">
                   <div className="w-[60%] h-[4px] bg-pink-600"></div>
                 </div>
@@ -198,8 +198,23 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
                     </button>
                   </div>
                 </div>
-                <div className=" flex-1 flex items-center justify-center">
-                  <p>content</p>
+
+                <div className="flex-1 flex items-center justify-center">
+                  <div className="absolute inset-0 -z-10 w-full h-full bg-gradient-to-t from-black to-transparent opacity-60 transition-all duration-300">
+                    <div className="relative overflow-hidden w-full h-full">
+                      <div
+                        className="w-full h-full absolute top-0 left-0 -z-10"
+                        style={{
+                          backgroundImage: `url("/img/historia-preview.avif")`,
+                          backgroundPosition: 'center',
+                          backgroundSize: 'cover',
+                          backgroundRepeat: 'no-repeat',
+                          filter: 'blur(100px)',
+                        }}
+                      />
+                      <img className="w-full h-full object-contain rounded-md block object-center z-10" src="/img/historia-preview.avif" alt="post" />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="w-full">

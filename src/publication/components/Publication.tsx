@@ -105,18 +105,14 @@ const Publication = () => {
             <div
               className="w-full h-full absolute top-0 left-0 -z-10"
               style={{
-                backgroundImage: `url("https://scontent.flim3-3.fna.fbcdn.net/v/t39.30808-6/342967266_201530525984252_1113191352303143202_n.jpg?stp=dst-jpg_s640x640&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=oCJzDRp3AHsAX_4Tn-D&_nc_ht=scontent.flim3-3.fna&oh=00_AfDYF-BB6ANSFJcJp6Bs7SVbm8_o4ccC6UAbjhMIHAuHMw&oe=655DBF54")`,
+                backgroundImage: `url("/img/publicacion-preview.jpg")`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 filter: 'blur(100px)',
               }}
             />
-            <img
-              className="w-full h-full object-contain rounded-md block object-center z-10"
-              src="https://scontent.flim3-3.fna.fbcdn.net/v/t39.30808-6/342967266_201530525984252_1113191352303143202_n.jpg?stp=dst-jpg_s640x640&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=oCJzDRp3AHsAX_4Tn-D&_nc_ht=scontent.flim3-3.fna&oh=00_AfDYF-BB6ANSFJcJp6Bs7SVbm8_o4ccC6UAbjhMIHAuHMw&oe=655DBF54"
-              alt="post"
-            />
+            <img className="w-full h-full object-contain rounded-md block object-center z-10" src="/img/publicacion-preview.jpg" alt="post" />
           </div>
         </div>
 

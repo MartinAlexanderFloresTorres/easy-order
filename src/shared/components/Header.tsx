@@ -75,8 +75,8 @@ const Header = () => {
             {isScrollTop ? (
               <User className="w-fit animate-fade-in" mediaHiddenNameAndLocation={true} />
             ) : (
-              <Link to="/" className="w-fit animate-fade-in">
-                <img width={48} height={48} src="/img/logo.png" alt="Logo" className="min-w-[48px] min-h-[48px] w-[48px] h-[48px]object-contain" />
+              <Link to="/" className="block w-[50px] h-[50px] min-w-[50px] min-h-[50px] animate-fade-in">
+                <img width={50} height={50} src="/img/logo.png" alt="Logo" className="w-full h-full object-contain" />
               </Link>
             )}
 

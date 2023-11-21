@@ -35,7 +35,7 @@ const ModalSearch = () => {
       onClose={onCloseSuggestions}
       isClose={isClose}
     >
-      <Modal.Overlay onClose={onCloseSuggestions}>
+      <Modal.Overlay onClose={onCloseSuggestions} className="block pt-10">
         <div className="max-w-xl mx-auto w-full">
           <form className="relative w-full" onSubmit={onSubmit}>
             <SearchIcon size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400" />
