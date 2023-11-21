@@ -15,9 +15,12 @@ import ConfirmationPage from '@/auth/pages/ConfirmationPage';
 import StoriesPage from '@/stories/pages/StoriesPage';
 import StoriesProvider from '@/stories/providers/StoriesProvider';
 import PublicationPage from '@/publication/pages/PublicationPage';
-import Publications from '@/publication/components/Publications';
+import PublicationsPage from '@/publication/pages/PublicationsPage';
 import TabsLayout from '@/shared/layouts/TabsLayout';
 import PublicProvider from '@/shared/providers/PublicProvider';
+import RestaurantsPage from '@/restaurant/pages/RestaurantsPage';
+import CategoriesPage from '@/category/pages/CategoriesPage';
+import OffersPage from '@/offer/pages/OffersPage';
 
 const App = () => {
   return (
@@ -39,10 +42,10 @@ const App = () => {
               <Route path="publication/by/:id" element={<PublicationPage />} />
 
               <Route path="/" element={<TabsLayout />}>
-                <Route index element={<Publications />} />
-                <Route path="restaurants" element={<Publications />} />
-                <Route path="categories" element={<Publications />} />
-                <Route path="offers" element={<Publications />} />
+                <Route index element={<PublicationsPage />} />
+                <Route path="restaurants" element={<RestaurantsPage />} />
+                <Route path="categories" element={<CategoriesPage />} />
+                <Route path="offers" element={<OffersPage />} />
               </Route>
             </Route>
 

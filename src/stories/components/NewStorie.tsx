@@ -11,11 +11,7 @@ const NewStorie = () => {
       >
         <div className="flex w-full flex-1 flex-col" draggable={false}>
           <div className="w-full relative flex-1">
-            <img
-              className="absolute inset-0 w-full h-full object-cover"
-              src="https://scontent.flim3-2.fna.fbcdn.net/v/t39.30808-1/361209214_1114294499958282_8104813080167960039_n.jpg?stp=dst-jpg_p160x160&_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=5G7yt1SP7-QAX_WSzUX&_nc_ht=scontent.flim3-2.fna&oh=00_AfBBPZ8_TRiNY9jaLPCkxt0_VDboinn20Zc6jiVFQOFnjg&oe=65595790"
-              alt="historia"
-            />
+            <img className="absolute inset-0 w-full h-full object-cover" src="/user.webp" alt="historia" />
             <div className="storie__overlay absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60 transition-all duration-300"></div>
           </div>
         </div>
