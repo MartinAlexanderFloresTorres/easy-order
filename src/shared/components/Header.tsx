@@ -98,13 +98,23 @@ const Header = () => {
 
             <div className="flex-1 flex items-center justify-end gap-2">
               {showSubHeader ? (
-                <div className="hidden xl:flex gap-4 items-center w-fit">
+                <div
+                  className="hidden xl:flex gap-4 items-center w-fit"
+                  style={{
+                    animation: 'fadeIn 0.5s ease-in-out',
+                  }}
+                >
                   <button className="flex-1 sm:flex-none py-3 px-8 text-sm uppercase text-center bg-pink-600 hover:bg-pink-700 transition-colors duration-500 font-semibold text-white">
                     Has tu pedido
                   </button>
                 </div>
               ) : (
-                <div className="hidden xl:flex gap-4 items-center w-fit">
+                <div
+                  className="hidden xl:flex gap-4 items-center w-fit"
+                  style={{
+                    animation: 'fadeInDown 0.5s ease-in-out',
+                  }}
+                >
                   <button
                     type="button"
                     className="w-fit text-center whitespace-nowrap bg-gradient-to-l from-pink-700 to-pink-400 transition-colors duration-100 p-[1px] uppercase text-xs font-semibold"

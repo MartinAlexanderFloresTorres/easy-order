@@ -7,11 +7,15 @@ const MainLayout = () => {
   const { showStorie, closeStorie } = useStories();
 
   return (
-    <>
+    <div
+      style={{
+        animation: 'fadeIn 0.2s ease-in-out',
+      }}
+    >
       <Header />
       <Outlet />
       {showStorie && <ModalStorie showClose={true} stories={[]} onClose={closeStorie} />}
-    </>
+    </div>
   );
 };
 

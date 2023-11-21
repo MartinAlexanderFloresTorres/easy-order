@@ -70,9 +70,9 @@ const Reaction = ({
             draggable={false}
             src={REACTIONS.like.url}
             alt={REACTIONS.like.name}
-            className="block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
+            className="pointer-events-none block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
           />
-          <span className="text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
+          <span className="pointer-events-none text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
             Me gusta
           </span>
         </button>
@@ -84,9 +84,9 @@ const Reaction = ({
             draggable={false}
             src={REACTIONS.love.url}
             alt={REACTIONS.love.name}
-            className="block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
+            className="pointer-events-none block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
           />
-          <span className="text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
+          <span className="pointer-events-none text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
             Me encanta
           </span>
         </button>
@@ -97,9 +97,9 @@ const Reaction = ({
             draggable={false}
             src={REACTIONS.care.url}
             alt={REACTIONS.care.name}
-            className="block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
+            className="pointer-events-none block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
           />
-          <span className="text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
+          <span className="pointer-events-none text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
             Me encanta
           </span>
         </button>
@@ -110,9 +110,9 @@ const Reaction = ({
             draggable={false}
             src={REACTIONS.laugh.url}
             alt={REACTIONS.laugh.name}
-            className="block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
+            className="pointer-events-none block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
           />
-          <span className="text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
+          <span className="pointer-events-none text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
             Me divierte
           </span>
         </button>
@@ -123,9 +123,9 @@ const Reaction = ({
             draggable={false}
             src={REACTIONS.amazed.url}
             alt={REACTIONS.amazed.name}
-            className="block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
+            className="pointer-events-none block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
           />
-          <span className="text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
+          <span className="pointer-events-none text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
             Me asombra
           </span>
         </button>
@@ -136,9 +136,9 @@ const Reaction = ({
             draggable={false}
             src={REACTIONS.sad.url}
             alt={REACTIONS.sad.name}
-            className="block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
+            className="pointer-events-none block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
           />
-          <span className="text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
+          <span className="pointer-events-none text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
             Me entristece
           </span>
         </button>
@@ -149,9 +149,9 @@ const Reaction = ({
             draggable={false}
             src={REACTIONS.angry.url}
             alt={REACTIONS.angry.name}
-            className="block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
+            className="pointer-events-none block group-hover:scale-125 transition-transform duration-300 min-w-[30px] min-h-[30px]"
           />
-          <span className="text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
+          <span className="pointer-events-none text-xs opacity-0 group-hover:opacity-100 group-hover:-top-9 -top-7 min-w-fit whitespace-nowrap absolute left-1/2 -translate-x-1/2 bg-zinc-900 px-3 py-1 rounded-md transition-all duration-200">
             Me enoja
           </span>
         </button>
@@ -196,16 +196,16 @@ const Reaction = ({
         {!reaction ? (
           children
         ) : (
-          <div className={twMerge(classNameReaction)} style={{ color: reaction.color }}>
+          <div className={twMerge('select-none', classNameReaction)} style={{ color: reaction.color }}>
             <img
               draggable={false}
               width={24}
               height={24}
-              className={twMerge('w-[24px] h-[24px] min-w-[24px] min-h-[24px]', classNameIcon)}
+              className={twMerge('pointer-events-none w-[24px] h-[24px] min-w-[24px] min-h-[24px]', classNameIcon)}
               src={reaction.url}
               alt={reaction.name}
             />
-            <span className="whitespace-nowrap hidden md:block">{reaction.name}</span>
+            <span className="pointer-events-none whitespace-nowrap hidden md:block">{reaction.name}</span>
           </div>
         )}
       </button>

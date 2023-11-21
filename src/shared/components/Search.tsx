@@ -50,11 +50,11 @@ const Search = () => {
 
       {isShowSuggestions && (
         <div
-          className="xl:max-w-xl search__suggestions absolute top-full md:top-[48px] left-0 xl:left-auto w-full bg-zinc-900 bg-opacity-[0.98] border border-zinc-800 border-opacity-80 md:rounded-b-3xl rounded-t-none shadow-lg overflow-auto"
+          className="xl:max-w-xl search__suggestions absolute top-full md:top-[48px] left-0 xl:left-auto w-full bg-zinc-900 bg-opacity-[0.98] border border-zinc-800 border-opacity-80 md:rounded-b-3xl rounded-t-none shadow-lg overflow-auto flex flex-col"
           onMouseEnter={() => setIsFocusSuggestions(true)}
           onMouseLeave={() => setIsFocusSuggestions(false)}
         >
-          <div className="container mx-auto p-4 flex flex-col gap-5">
+          <div className="container flex-1 mx-auto p-4 flex flex-col gap-5">
             <div className="flex items-center justify-between gap-2">
               <User className="md:hidden flex" />
               <button
