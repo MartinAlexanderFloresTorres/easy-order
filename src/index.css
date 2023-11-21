@@ -8,6 +8,7 @@
 }
 :root {
   color-scheme: dark;
+  --swiper-theme-color: rgb(220 38 38);
 }
 html {
   color: #fffef1;
@@ -137,4 +138,32 @@ button {
     width: 0;
     max-width: 0;
   }
+}
+
+/* search__suggestions */
+.search__suggestions {
+  max-height: calc(100vh - 86px);
+}
+@media (min-width: 768px) {
+  .search__suggestions {
+    max-height: calc(100vh - 86px);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* SWIPPER */
+.swiper-pagination-bullet {
+  width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 14px));
+  height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 14px));
+  background: var(--swiper-pagination-bullet-inactive-color, var(--swiper-theme-color)) !important;
 }

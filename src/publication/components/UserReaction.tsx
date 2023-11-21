@@ -1,7 +1,7 @@
+import { Link } from 'react-router-dom';
+import { BellPlus } from 'lucide-react';
 import Avatar from '@/shared/components/Avatar';
 import { REACTIONS } from '@/publication/constants/reactions';
-import { BellPlus } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 interface UserReactionProps {
   onClose: () => void;

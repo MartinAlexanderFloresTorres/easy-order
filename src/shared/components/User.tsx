@@ -17,10 +17,10 @@ const User = ({ className, style = {}, mediaHiddenNameAndLocation = false, child
     >
       <Avatar />
       <div className={twMerge('w-full h-fit flex flex-col justify-center gap-[3px]', mediaHiddenNameAndLocation ? 'hidden md:flex' : '')}>
-        <Link to={'/'} draggable={false} className="text-[16px] font-bold webkit-line-clamp-1">
+        <Link to={'/'} draggable={false} className="w-fit text-[16px] font-bold line-clamp-1">
           White dev
         </Link>
-        <p className="text-[14px] font-medium text-zinc-400 webkit-line-clamp-1">Lima - Peru</p>
+        <p className="w-fit text-[14px] font-medium text-zinc-400 line-clamp-1">Lima - Peru</p>
         {children && <div className="mt-2">{children}</div>}
       </div>
     </div>

@@ -35,7 +35,6 @@ const Reaction = ({
 
   const openReaction = () => {
     if (debounceTimerReaction) clearTimeout(debounceTimerReaction);
-
     debounceTimerReaction = setTimeout(() => {
       setShowReaction(true);
     }, 600);
@@ -52,7 +51,7 @@ const Reaction = ({
   const handleReaction = (newReaction: ReactionInterface) => {
     setShowReaction(false);
 
-    if (reactionActive && reactionActive.name === newReaction.name) {
+    if (reactionActive && reactionActive.id === newReaction.id) {
       onRemoveReaction(publicationId, newReaction);
       setReaction(null);
     } else {
@@ -61,41 +60,9 @@ const Reaction = ({
     }
   };
 
-  return (
-    <>
-      <button
-        className={twMerge('select-none', classNameButton)}
-        style={style}
-        onMouseEnter={openReaction}
-        onMouseLeave={closeReaction}
-        onClick={() => handleReaction(reaction ? reaction : REACTIONS.like)}
-      >
-        {!reaction ? (
-          children
-        ) : (
-          <div className={twMerge(classNameReaction)}>
-            <img
-              draggable={false}
-              width={24}
-              height={24}
-              className={twMerge('w-[24px] h-[24px] min-w-[24px] min-h-[24px]', classNameIcon)}
-              src={reaction.url}
-              alt={reaction.name}
-            />
-            <span className="whitespace-nowrap hidden md:block">{reaction.name}</span>
-          </div>
-        )}
-      </button>
-
-      <div
-        className={twMerge(
-          'select-none absolute z-10 opacity-0 left-7 flex lg:flex-nowrap p-2 flex-wrap items-center justify-center bg-zinc-800 border border-zinc-700 border-opacity-40 rounded-md shadow-md transition-all duration-300',
-          showReaction ? 'opacity-100 pointer-events-auto -top-[55px]' : 'opacity-0 pointer-events-none -top-[100px]',
-          classNameReactions,
-        )}
-        onMouseEnter={openReaction}
-        onMouseLeave={closeReaction}
-      >
+  const ReactionsButtons = () => {
+    return (
+      <>
         <button className="relative group transition-all p-1 duration-300 text-zinc-400" onClick={() => handleReaction(REACTIONS.like)}>
           <img
             width={30}
@@ -188,6 +155,81 @@ const Reaction = ({
             Me enoja
           </span>
         </button>
+      </>
+    );
+  };
+  return (
+    <>
+      <button
+        className={twMerge('select-none', classNameButton)}
+        style={style}
+        onMouseDown={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          openReaction();
+        }}
+        onMouseUp={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+        onMouseEnter={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          openReaction();
+        }}
+        onMouseLeave={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          closeReaction();
+        }}
+        onTouchStart={(e) => {
+          e.stopPropagation();
+          openReaction();
+        }}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          closeReaction();
+          handleReaction(reaction ? reaction : REACTIONS.like);
+        }}
+      >
+        {!reaction ? (
+          children
+        ) : (
+          <div className={twMerge(classNameReaction)} style={{ color: reaction.color }}>
+            <img
+              draggable={false}
+              width={24}
+              height={24}
+              className={twMerge('w-[24px] h-[24px] min-w-[24px] min-h-[24px]', classNameIcon)}
+              src={reaction.url}
+              alt={reaction.name}
+            />
+            <span className="whitespace-nowrap hidden md:block">{reaction.name}</span>
+          </div>
+        )}
+      </button>
+
+      <div
+        className={twMerge(
+          'hidden md:flex select-none absolute z-10 opacity-0 left-7 lg:flex-nowrap p-2 flex-wrap items-center justify-center bg-zinc-800 border border-zinc-700 border-opacity-40 rounded-md shadow-md transition-all duration-300',
+          showReaction ? 'opacity-100 pointer-events-auto -top-[55px]' : 'opacity-0 pointer-events-none -top-[100px]',
+          classNameReactions,
+        )}
+        onMouseEnter={openReaction}
+        onMouseLeave={closeReaction}
+      >
+        <ReactionsButtons />
+      </div>
+
+      <div
+        className={twMerge(
+          'md:hidden flex select-none absolute z-10 opacity-0 left-7 lg:flex-nowrap p-2 flex-wrap items-center justify-center bg-zinc-800 border border-zinc-700 border-opacity-40 rounded-md shadow-md transition-all duration-300',
+          showReaction ? 'opacity-100 pointer-events-auto -top-[55px]' : 'opacity-0 pointer-events-none -top-[100px]',
+          classNameReactions,
+        )}
+      >
+        <ReactionsButtons />
       </div>
     </>
   );

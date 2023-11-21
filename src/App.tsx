@@ -9,12 +9,14 @@ import LoginPage from '@/auth/pages/LoginPage';
 import RegistePage from '@/auth/pages/RegistePage';
 import RecoverPasswordPage from '@/auth/pages/RecoverPasswordPage';
 import NewPasswordPage from '@/auth/pages/NewPasswordPage';
-import HomePage from '@/home/pages/HomePage';
 import SubscriptionPlansPage from '@/subscription-plans/pages/SubscriptionPlansPage';
 import NotFoundPage from '@/shared/pages/NotFoundPage';
 import ConfirmationPage from '@/auth/pages/ConfirmationPage';
 import StoriesPage from '@/stories/pages/StoriesPage';
 import StoriesProvider from '@/stories/providers/StoriesProvider';
+import PublicationPage from '@/publication/pages/PublicationPage';
+import Publications from '@/publication/components/Publications';
+import TabsLayout from '@/shared/layouts/TabsLayout';
 
 const App = () => {
   return (
@@ -31,8 +33,17 @@ const App = () => {
           </Route>
 
           <Route path="/" element={<MainLayout />}>
-            <Route index element={<HomePage />} />
+            <Route index element={<Navigate to={'/tabs/publications'} />} />
             <Route path="subscription-plans" element={<SubscriptionPlansPage />} />
+            <Route path="publication/by/:id" element={<PublicationPage />} />
+
+            <Route path="tabs" element={<TabsLayout />}>
+              <Route index element={<Navigate to={'/tabs/publications'} />} />
+              <Route path="publications" element={<Publications />} />
+              <Route path="restaurants" element={<Publications />} />
+              <Route path="categories" element={<Publications />} />
+              <Route path="offers" element={<Publications />} />
+            </Route>
           </Route>
 
           <Route path="stories/:storie" element={<StoriesPage />} />

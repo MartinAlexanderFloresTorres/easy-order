@@ -21,7 +21,7 @@ const StoriesProvider = ({ children }: StoriesProviderProps) => {
   };
 
   const closeStorie = () => {
-    window.history.pushState({}, '', '/');
+    window.history.back();
     setShowStorie(false);
   };
 

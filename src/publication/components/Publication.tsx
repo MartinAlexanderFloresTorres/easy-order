@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { MessageCircle, MoreHorizontal, Share2, ThumbsUp } from 'lucide-react';
 import InputForm from '@/publication/components/InputForm';
 import Avatar from '@/shared/components/Avatar';
 import ModalReactions from '@/publication/components/ModalReactions';
 import ModalPublication from '@/publication/components/ModalPublication';
 import { REACTIONS } from '@/publication/constants/reactions';
-import share from '@/helpers/shared';
 import { Reaction as ReactionInterface } from '@/publication/interfaces';
 import Reaction from '@/publication/components/Reaction';
+import share from '@/helpers/shared';
 
 const Publication = () => {
   const [showComment, setShowComment] = useState(false);
@@ -17,6 +17,7 @@ const Publication = () => {
   const [reactionActive, setReactionActive] = useState<ReactionInterface | null>(null);
 
   const toggleComment = () => setShowComment((prev) => !prev);
+  const { pathname } = useLocation();
 
   const sharedPublication = () => {
     share({
@@ -29,8 +30,18 @@ const Publication = () => {
   const openModalReactions = () => setShowModalReactions(true);
   const closeModalReactions = () => setShowModalReactions(false);
 
-  const openModalPublication = () => setShowModalPublication(true);
-  const closeModalPublication = () => setShowModalPublication(false);
+  const openModalPublication = () => {
+    if (!pathname.includes('/publication/by/')) {
+      window.history.pushState({}, '', '/publication/by/id');
+    }
+    setShowModalPublication(true);
+  };
+  const closeModalPublication = () => {
+    if (!pathname.includes('/publication/by/')) {
+      window.history.pushState({}, '', '/');
+    }
+    setShowModalPublication(false);
+  };
 
   return (
     <>
@@ -89,7 +100,7 @@ const Publication = () => {
           </p>
         </div>
 
-        <Link to={'/'} draggable={false} className="block w-full select-none" onClick={openModalPublication}>
+        <div role="button" className="block w-full select-none" onClick={openModalPublication}>
           <div className="relative overflow-hidden w-full h-[460px] md:h-[600px]">
             <div
               className="w-full h-full absolute top-0 left-0 -z-10"
@@ -107,7 +118,7 @@ const Publication = () => {
               alt="post"
             />
           </div>
-        </Link>
+        </div>
 
         <div className="flex items-center justify-between gap-3 p-3 select-none">
           <div className="flex items-center gap-2">

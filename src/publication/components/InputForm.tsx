@@ -1,7 +1,7 @@
-import Avatar from '@/shared/components/Avatar';
-import { Image, Send, X } from 'lucide-react';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { Image, Send, X } from 'lucide-react';
+import Avatar from '@/shared/components/Avatar';
 
 interface InputFormProps {
   className?: string;

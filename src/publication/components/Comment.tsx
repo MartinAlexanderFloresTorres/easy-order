@@ -4,8 +4,8 @@ import Avatar from '@/shared/components/Avatar';
 import Reaction from '@/publication/components/Reaction';
 import ModalReactions from '@/publication/components/ModalReactions';
 import { Reaction as ReactionInterface } from '@/publication/interfaces';
-import { REACTIONS } from '../constants';
-import InputForm from './InputForm';
+import { REACTIONS } from '@/publication/constants';
+import InputForm from '@/publication/components/InputForm';
 
 interface ReactionProps {
   publicationId: string;
@@ -23,7 +23,7 @@ const Comment = ({ publicationId }: ReactionProps) => {
 
   return (
     <>
-      <div className="w-full">
+      <div className="w-full pb-1 border-b border-zinc-700 border-opacity-50">
         <div className="px-3 py-2 bg-zinc-800 rounded-lg">
           <div className="flex items-center gap-2">
             <Avatar className="w-8 h-8 min-w-[32px] min-h-[32px]" />
