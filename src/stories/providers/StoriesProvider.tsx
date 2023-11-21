@@ -1,4 +1,5 @@
 import { useState, createContext } from 'react';
+import { useLocation } from 'react-router-dom';
 
 interface StoriesContextData {
   showStorie: boolean;
@@ -14,6 +15,7 @@ interface StoriesProviderProps {
 
 const StoriesProvider = ({ children }: StoriesProviderProps) => {
   const [showStorie, setShowStorie] = useState(false);
+  const { pathname } = useLocation();
 
   const openStorie = (storie: string) => {
     window.history.pushState({}, '', `/stories/${storie}`);
@@ -21,7 +23,7 @@ const StoriesProvider = ({ children }: StoriesProviderProps) => {
   };
 
   const closeStorie = () => {
-    window.history.back();
+    window.history.pushState({}, '', pathname);
     setShowStorie(false);
   };
 

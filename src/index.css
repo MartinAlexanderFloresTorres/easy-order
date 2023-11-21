@@ -16,10 +16,11 @@ html {
   font-family: Graphik, sans-serif;
   font-size: 19px;
   line-height: 1.5;
+  scroll-behavior: smooth;
 }
 body {
   min-height: 100vh;
-  min-width: 390px;
+  min-width: 398px;
 }
 button {
   line-height: normal;

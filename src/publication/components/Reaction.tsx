@@ -37,7 +37,7 @@ const Reaction = ({
     if (debounceTimerReaction) clearTimeout(debounceTimerReaction);
     debounceTimerReaction = setTimeout(() => {
       setShowReaction(true);
-    }, 600);
+    }, 400);
   };
 
   const closeReaction = () => {

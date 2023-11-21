@@ -17,40 +17,41 @@ import StoriesProvider from '@/stories/providers/StoriesProvider';
 import PublicationPage from '@/publication/pages/PublicationPage';
 import Publications from '@/publication/components/Publications';
 import TabsLayout from '@/shared/layouts/TabsLayout';
+import PublicProvider from '@/shared/providers/PublicProvider';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <StoriesProvider>
-        <Routes>
-          <Route path="/auth" element={<AuthLayout />}>
-            <Route index element={<Navigate to="/auth/login" />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="register" element={<RegistePage />} />
-            <Route path="recover-password" element={<RecoverPasswordPage />} />
-            <Route path="new-password/:token" element={<NewPasswordPage />} />
-            <Route path="confirmation/:token" element={<ConfirmationPage />} />
-          </Route>
-
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<Navigate to={'/tabs/publications'} />} />
-            <Route path="subscription-plans" element={<SubscriptionPlansPage />} />
-            <Route path="publication/by/:id" element={<PublicationPage />} />
-
-            <Route path="tabs" element={<TabsLayout />}>
-              <Route index element={<Navigate to={'/tabs/publications'} />} />
-              <Route path="publications" element={<Publications />} />
-              <Route path="restaurants" element={<Publications />} />
-              <Route path="categories" element={<Publications />} />
-              <Route path="offers" element={<Publications />} />
+      <PublicProvider>
+        <StoriesProvider>
+          <Routes>
+            <Route path="/auth" element={<AuthLayout />}>
+              <Route index element={<Navigate to="/auth/login" />} />
+              <Route path="login" element={<LoginPage />} />
+              <Route path="register" element={<RegistePage />} />
+              <Route path="recover-password" element={<RecoverPasswordPage />} />
+              <Route path="new-password/:token" element={<NewPasswordPage />} />
+              <Route path="confirmation/:token" element={<ConfirmationPage />} />
             </Route>
-          </Route>
 
-          <Route path="stories/:storie" element={<StoriesPage />} />
+            <Route path="/" element={<MainLayout />}>
+              <Route path="subscription-plans" element={<SubscriptionPlansPage />} />
+              <Route path="publication/by/:id" element={<PublicationPage />} />
 
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </StoriesProvider>
+              <Route path="/" element={<TabsLayout />}>
+                <Route index element={<Publications />} />
+                <Route path="restaurants" element={<Publications />} />
+                <Route path="categories" element={<Publications />} />
+                <Route path="offers" element={<Publications />} />
+              </Route>
+            </Route>
+
+            <Route path="stories/:storie" element={<StoriesPage />} />
+
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </StoriesProvider>
+      </PublicProvider>
     </BrowserRouter>
   );
 };

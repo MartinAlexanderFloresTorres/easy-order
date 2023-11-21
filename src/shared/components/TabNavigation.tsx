@@ -9,7 +9,7 @@ interface TabNavigationProps {
 }
 const TabNavigation = ({ className, classNameContainer, style }: TabNavigationProps) => {
   return (
-    <section className={twMerge('px-4 py-2', className)} {...(style && { style })}>
+    <section className={twMerge('select-none px-4 py-2', className)} {...(style && { style })}>
       <div
         className={twMerge('mt-4 sm:w-fit max-w-2xl mx-auto p-2 bg-zinc-800 bg-opacity-50 backdrop-blur-md rounded-lg shadow-lg', classNameContainer)}
       >
@@ -17,7 +17,7 @@ const TabNavigation = ({ className, classNameContainer, style }: TabNavigationPr
           <Tab
             tab={{
               title: 'Publicaciones',
-              url: '/tabs/publications',
+              url: '/',
               icon: <Newspaper size={20} className="w-[20px] h-[20px] min-w-[20px] min-h-[20px] inline-block" />,
             }}
           />
@@ -25,7 +25,7 @@ const TabNavigation = ({ className, classNameContainer, style }: TabNavigationPr
           <Tab
             tab={{
               title: 'Restaurantes',
-              url: '/tabs/restaurants',
+              url: '/restaurants',
               icon: <Store size={20} className="w-[20px] h-[20px] min-w-[20px] min-h-[20px] inline-block" />,
             }}
           />
@@ -33,7 +33,7 @@ const TabNavigation = ({ className, classNameContainer, style }: TabNavigationPr
           <Tab
             tab={{
               title: 'Categorias',
-              url: '/tabs/categories',
+              url: '/categories',
               icon: <Utensils size={20} className="w-[20px] h-[20px] min-w-[20px] min-h-[20px] inline-block" />,
             }}
           />
@@ -41,7 +41,7 @@ const TabNavigation = ({ className, classNameContainer, style }: TabNavigationPr
           <Tab
             tab={{
               title: 'Ofertas',
-              url: '/tabs/offers',
+              url: '/offers',
               icon: <BadgePercent size={20} className="w-[20px] h-[20px] min-w-[20px] min-h-[20px] inline-block" />,
             }}
           />

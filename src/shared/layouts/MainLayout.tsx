@@ -1,10 +1,13 @@
 import { Outlet } from 'react-router-dom';
+import useStories from '@/stories/hooks/useStories';
+import usePublic from '@/shared/hooks/usePublic';
 import Header from '@/shared/components/Header';
 import ModalStorie from '@/stories/components/ModalStorie';
-import useStories from '@/stories/hooks/useStories';
+import ModalSearch from '@/shared/components/ModalSearch';
 
 const MainLayout = () => {
   const { showStorie, closeStorie } = useStories();
+  const { isShowModalSearch } = usePublic();
 
   return (
     <div
@@ -15,6 +18,7 @@ const MainLayout = () => {
       <Header />
       <Outlet />
       {showStorie && <ModalStorie showClose={true} stories={[]} onClose={closeStorie} />}
+      {isShowModalSearch && <ModalSearch />}
     </div>
   );
 };
