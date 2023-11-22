@@ -1,8 +1,8 @@
+import { useState } from 'react';
+import { CopyPlus, Image, SmilePlus, X } from 'lucide-react';
 import { ParamsPublication } from '@/publication/interfaces';
 import Modal from '@/shared/components/Modal';
 import User from '@/shared/components/User';
-import { CopyPlus, Image, SmilePlus, X } from 'lucide-react';
-import { useState } from 'react';
 
 interface ModalNewPublicationProps {
   onClose: () => void;

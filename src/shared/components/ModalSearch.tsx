@@ -38,12 +38,12 @@ const ModalSearch = () => {
       <Modal.Overlay onClose={onCloseSuggestions} className="block pt-10">
         <div className="max-w-xl mx-auto w-full">
           <form className="relative w-full" onSubmit={onSubmit}>
-            <SearchIcon size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400" />
+            <SearchIcon size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-zinc-400" />
             <input
               type="text"
               className={twMerge(
-                'w-full border pl-9 border-zinc-700 border-opacity-50 rounded-full py-2 text-base text-zinc-400 bg-zinc-800 hover:bg-opacity-60 bg-opacity-50 outline-none focus:border-opacity-90 transition-colors duration-300 placeholder:text-zinc-600',
-                search.length <= 0 ? 'pr-2' : 'pr-9',
+                'w-full border pl-11 border-zinc-700 border-opacity-50 rounded-full py-4 text-base text-zinc-400 bg-zinc-800 hover:bg-opacity-60 bg-opacity-50 outline-none focus:border-opacity-90 transition-colors duration-300 placeholder:text-zinc-600',
+                search.length <= 0 ? 'pr-4' : 'pr-11',
               )}
               autoFocus
               value={search}
@@ -53,7 +53,7 @@ const ModalSearch = () => {
             {search && (
               <button
                 type="button"
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-400 hover:text-white transition-all duration-300"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-zinc-400 hover:text-white transition-all duration-300"
                 onClick={clearSearch}
               >
                 <X size={20} />
