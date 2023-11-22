@@ -25,16 +25,16 @@ const Comment = ({ publicationId }: ReactionProps) => {
     <>
       <div className="w-full pb-1 border-b border-zinc-700 border-opacity-50">
         <div className="px-3 py-2 bg-zinc-800 rounded-lg">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 mb-1">
             <Avatar className="w-8 h-8 min-w-[32px] min-h-[32px]" />
             <Link
               to={'user/by/martin-dev'}
-              className="text-sm font-semibold text-zinc-300 hover:underline hover:to-zinc-200 transition-all duration-300"
+              className="text-base font-semibold text-zinc-300 hover:underline hover:to-zinc-200 transition-all duration-300"
             >
               Martin dev
             </Link>
           </div>
-          <p className="text-xs text-zinc-300 leading-4">
+          <p className="text-sm leading-5 text-zinc-300 leading-4">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus praesentium quas hic voluptate magnam distinctio ut quidem libero
             labore. Temporibus, quos? Inventore cupiditate aut repellendus sunt aperiam pariatur, harum consequatur!
           </p>
@@ -42,7 +42,7 @@ const Comment = ({ publicationId }: ReactionProps) => {
 
         <div className="flex items-center gap-2 mt-1">
           <div className="relative flex-1 flex items-center gap-2">
-            <p className="text-xs text-zinc-400">1d</p>
+            <p className="text-sm text-zinc-400">1d</p>
             <Reaction
               publicationId="123"
               onReaction={(publicationId, reaction) => {
@@ -54,8 +54,8 @@ const Comment = ({ publicationId }: ReactionProps) => {
                 setReactionActive(null);
               }}
               reactionActive={reactionActive}
-              classNameButton="text-xs text-zinc-400 hover:underline cursor-pointer transition-all duration-300"
-              classNameReaction="flex items-center gap-2 text-xs"
+              classNameButton="text-sm text-zinc-400 hover:underline cursor-pointer transition-all duration-300"
+              classNameReaction="flex items-center gap-2 text-sm"
               classNameReactions="-top-[66px] -left-7"
               classNameIcon="w-4 h-4 min-w-[20px] min-h-[20px]"
             >
@@ -64,7 +64,7 @@ const Comment = ({ publicationId }: ReactionProps) => {
 
             <label
               htmlFor="22222"
-              className="text-xs text-zinc-400 hover:underline cursor-pointer transition-all duration-300"
+              className="text-sm text-zinc-400 hover:underline cursor-pointer transition-all duration-300"
               onClick={toggleComment}
             >
               <span>Responder</span>

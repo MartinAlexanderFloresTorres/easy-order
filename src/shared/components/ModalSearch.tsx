@@ -42,7 +42,7 @@ const ModalSearch = () => {
             <input
               type="text"
               className={twMerge(
-                'w-full border pl-9 border-zinc-700 border-opacity-50 rounded-full py-2 text-sm text-zinc-400 bg-zinc-800 hover:bg-opacity-60 bg-opacity-50 outline-none focus:border-opacity-90 transition-colors duration-300 placeholder:text-zinc-600',
+                'w-full border pl-9 border-zinc-700 border-opacity-50 rounded-full py-2 text-base text-zinc-400 bg-zinc-800 hover:bg-opacity-60 bg-opacity-50 outline-none focus:border-opacity-90 transition-colors duration-300 placeholder:text-zinc-600',
                 search.length <= 0 ? 'pr-2' : 'pr-9',
               )}
               autoFocus

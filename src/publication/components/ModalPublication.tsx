@@ -81,7 +81,7 @@ const ModalPublication = ({ onClose }: ModalPublicationProps) => {
                   </div>
                   <div className="leading-none">
                     <Link
-                      className="line-clamp-1 text-sm font-semibold text-zinc-200 hover:text-zinc-100 hover:underline transition-all duration-300"
+                      className="line-clamp-1 text-base font-semibold text-zinc-200 hover:text-zinc-100 hover:underline transition-all duration-300"
                       to={'/restaurants/by/martin-dev'}
                     >
                       Restaurante x
@@ -89,7 +89,7 @@ const ModalPublication = ({ onClose }: ModalPublicationProps) => {
                     <div className="flex flex-col md:flex-row md:items-center gap-2">
                       <Link
                         to={'/user/by/martin-dev'}
-                        className="line-clamp-1 text-xs text-zinc-400 hover:text-zinc-300 hover:underline transition-all duration-300"
+                        className="line-clamp-1 text-sm text-zinc-400 hover:text-zinc-300 hover:underline transition-all duration-300"
                       >
                         Nombre del propietario
                       </Link>
@@ -115,13 +115,16 @@ const ModalPublication = ({ onClose }: ModalPublicationProps) => {
                   Hola a todos, este es mi primer proyecto de la actualización de Node.js, ya con algunos cambios en el diseño.
                 </h2>
 
-                <Link className="leading-5 w-fit text-sm text-pink-500 hover:text-pink-400 hover:underline transition-all duration-300" to={'/'}>
+                <Link
+                  className="leading-5 w-fit text-base  my-2 text-pink-500 hover:text-pink-400 hover:underline transition-all duration-300"
+                  to={'/'}
+                >
                   Nombre del proyecto
                 </Link>
-                <p className="leading-5 text-sm text-zinc-300">
+                <p className="leading-5 text-base text-zinc-300">
                   Primer Proyecto de la actualización de Node.js, ya con algunos cambios en el diseño.
                 </p>
-                <p className="leading-5 text-sm text-zinc-300">
+                <p className="leading-5 text-base text-zinc-300">
                   Subida de archivos, validaciones, alertas, autenticación, creación de cuentas, REST API, múltiples rutas, por más sencillo que
                   intente que fuera siempre terminan los proyectos con bastantes funciones 🧐
                 </p>

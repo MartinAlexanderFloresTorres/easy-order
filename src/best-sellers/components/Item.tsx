@@ -10,7 +10,7 @@ const Item = ({ to }: ItemProps) => {
   return (
     <div className="border border-zinc-800 bg-zinc-800 hover:bg-opacity-50 bg-opacity-30 backdrop-blur-sm transition-colors duration-300 shadow-lg overflow-hidden">
       <div>
-        <Link draggable={false} to={`/${to}/by/1`} className="block select-none w-full h-48 overflow-hidden">
+        <Link draggable={false} to={`${to}/by/1`} className="block select-none w-full h-48 overflow-hidden">
           <img
             className="block w-full h-48 bg-zinc-900 object-cover object-center hover:scale-105 transition-all duration-300"
             src="https://uploads-ssl.webflow.com/632c4f68f7447c23e3b5d6cd/6434321debae1afd87163c56_Main-p-800.png"
@@ -23,19 +23,19 @@ const Item = ({ to }: ItemProps) => {
               <span className="text-xs line-clamp-1">10 personas</span>
             </div>
 
-            <Link to={`/${to}/by/1`} className="p-1 text-zinc-600 hover:text-white transition-all duration-300">
+            <Link to={`${to}/by/1`} className="p-1 text-zinc-600 hover:text-white transition-all duration-300">
               <ChevronRight size={24} />
             </Link>
           </div>
 
           <div>
-            <Link to={`/${to}/by/1`} className="block mb-4">
+            <Link to={`${to}/by/1`} className="block mb-4">
               <h2 className="line-clamp-1 text-zinc-300 hover:text-white transition-colors text-sm font-bold mb-2">Nombre del producto</h2>
               <p className="line-clamp-1 text-xs font-medium mb-2 bg-green-800 bg-opacity-20 w-fit py-1 px-3 rounded-md border border-green-800 border-opacity-30">
                 $ 100.00
               </p>
 
-              <p className="line-clamp-2 text-xs text-zinc-400 mb-2">
+              <p className="line-clamp-2 text-sm text-zinc-400 mb-2">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius provident, placeat eum perferendis nulla expedita ab incidunt voluptas
                 voluptates tempore.
               </p>

@@ -10,7 +10,7 @@ const Search = () => {
       onClick={onOpenModalSearch}
     >
       <SearchIcon size={20} className="text-zinc-400" />
-      <p className="hidden md:block text-left w-full whitespace-nowrap line-clamp-1  text-sm text-zinc-500 ">Buscar restaurantes o platillos...</p>
+      <p className="hidden md:block text-left w-full whitespace-nowrap line-clamp-1  text-base text-zinc-500 ">Buscar restaurantes o platillos...</p>
     </button>
   );
 };

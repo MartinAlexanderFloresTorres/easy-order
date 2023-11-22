@@ -24,11 +24,11 @@ const RecoverPasswordForm = ({
   return (
     <form
       onSubmit={onSubmit}
-      className={twMerge('border border-zinc-800 w-full mx-auto bg-zinc-900 px-6 pb-10 rounded-md flex flex-col gap-6', className)}
+      className={twMerge('relative border border-zinc-800 w-full mx-auto bg-zinc-900 px-6 pb-10 rounded-md flex flex-col gap-6', className)}
     >
-      <div className="w-full pt-5">
+      <div className={twMerge('w-full pt-5', showClose && 'pl-4')}>
         {showClose && (
-          <div className="flex items-start justify-start">
+          <div className="flex items-start justify-start w-fit absolute top-5 left-2">
             <button className="text-zinc-600 hover:text-white transition-all duration-300" type="button" onClick={onFinished}>
               <ChevronLeft size={30} />
             </button>

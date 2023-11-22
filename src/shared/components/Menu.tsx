@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { X } from 'lucide-react';
+import { Truck, X } from 'lucide-react';
 import User from '@/shared/components/User';
 import Modal from '@/shared/components/Modal';
 
@@ -59,10 +59,11 @@ const Menu = ({ onClose, onOpenLogin, onOpenRegister }: MenuProps) => {
           <User />
           <div className="w-full sm:w-fit flex gap-1">
             <button
-              className="flex-1 sm:flex-none py-4 px-10 uppercase text-center bg-pink-600 hover:bg-pink-700 transition-all duration-500 font-semibold text-white"
+              className="flex-1 sm:flex-none flex items-center gap-2 whitespace-nowrap py-4 px-10 uppercase text-center bg-pink-600 hover:bg-pink-700 transition-all duration-500 font-semibold text-white"
               onClick={onCloseMenu}
             >
-              Has tu pedido
+              <span>Has tu pedido</span>
+              <Truck size={28} className="min-h-[28px] min-w-[28px] w-[28px] h-[28px]" />
             </button>
             <button
               type="button"
@@ -79,7 +80,7 @@ const Menu = ({ onClose, onOpenLogin, onOpenRegister }: MenuProps) => {
             <Link
               to="/"
               className={twMerge(
-                'block uppercase w-fit p-2 hover:text-pink-600 text-white transition-all duration-500 text-2xl sm:text-3xl lg:text-4xl font-extrabold',
+                'block uppercase w-fit p-2 hover:text-pink-600 text-white transition-all duration-500 text-4xl sm:text-5xl lg:text-6xl font-extrabold',
                 isActive('/') && 'text-pink-600',
               )}
               onMouseEnter={() => setHoverText('Inicio')}
@@ -91,7 +92,7 @@ const Menu = ({ onClose, onOpenLogin, onOpenRegister }: MenuProps) => {
             <Link
               to="/restaurants"
               className={twMerge(
-                'block uppercase w-fit p-2 hover:text-pink-600 text-white transition-all duration-500 text-2xl sm:text-3xl lg:text-4xl font-extrabold',
+                'block uppercase w-fit p-2 hover:text-pink-600 text-white transition-all duration-500 text-4xl sm:text-5xl lg:text-6xl font-extrabold',
                 isActive('/restaurants') && 'text-pink-600',
               )}
               onMouseEnter={() => setHoverText('Restaurantes')}
@@ -103,7 +104,7 @@ const Menu = ({ onClose, onOpenLogin, onOpenRegister }: MenuProps) => {
             <Link
               to="/search"
               className={twMerge(
-                'block uppercase w-fit p-2 hover:text-pink-600 text-white transition-all duration-500 text-2xl sm:text-3xl lg:text-4xl font-extrabold',
+                'block uppercase w-fit p-2 hover:text-pink-600 text-white transition-all duration-500 text-4xl sm:text-5xl lg:text-6xl font-extrabold',
                 isActive('/restaurants') && 'text-pink-600',
               )}
               onMouseEnter={() => setHoverText('Buscar')}
@@ -115,7 +116,7 @@ const Menu = ({ onClose, onOpenLogin, onOpenRegister }: MenuProps) => {
             <Link
               to="/offer-day"
               className={twMerge(
-                'block uppercase w-fit p-2 hover:text-pink-600 text-white transition-all duration-500 text-2xl sm:text-3xl lg:text-4xl font-extrabold',
+                'block uppercase w-fit p-2 hover:text-pink-600 text-white transition-all duration-500 text-4xl sm:text-5xl lg:text-6xl font-extrabold',
                 isActive('/offer-day') && 'text-pink-600',
               )}
               onMouseEnter={() => setHoverText('Ofertas')}
@@ -127,7 +128,7 @@ const Menu = ({ onClose, onOpenLogin, onOpenRegister }: MenuProps) => {
             <Link
               to="/subscription-plans"
               className={twMerge(
-                'block uppercase w-fit p-2 hover:text-pink-600 text-white transition-all duration-500 text-2xl sm:text-3xl lg:text-4xl font-extrabold',
+                'block uppercase w-fit p-2 hover:text-pink-600 text-white transition-all duration-500 text-4xl sm:text-5xl lg:text-6xl font-extrabold',
                 isActive('/subscription-plans') && 'text-pink-600',
               )}
               onMouseEnter={() => setHoverText('Ofertas')}

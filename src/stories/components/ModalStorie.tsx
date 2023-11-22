@@ -74,24 +74,24 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
 
           <div className="flex-1 overflow-auto">
             <div className="p-4 border-b border-b-zinc-700 border-opacity-40">
-              <h2 className="text-lg font-bold">Historias</h2>
+              <h2 className="text-xl font-bold">Historias</h2>
             </div>
             <div className="p-4 border-b border-b-zinc-700 border-opacity-40">
-              <h3 className="text-xs font-semibold mb-2">Tu historia</h3>
+              <h3 className="text-base font-semibold mb-2">Tu historia</h3>
               <button className="w-full flex items-center justify-between gap-2">
                 <div className="flex items-center justify-center  min-w-[60px] min-h-[60px] rounded-full bg-zinc-600 bg-opacity-50 transition-colors">
                   <Plus size={24} className="text-sky-600" />
                 </div>
 
                 <div className="text-left w-full">
-                  <span className="text-sm font-semibold text-white line-clamp-1">Crear una historia</span>
-                  <span className="block text-xs text-zinc-400">Comparte una foto o escribe algo</span>
+                  <span className="text-base font-semibold text-white line-clamp-1">Crear una historia</span>
+                  <span className="block text-sm text-zinc-400">Comparte una foto o escribe algo</span>
                 </div>
               </button>
             </div>
 
             <div className="p-4 border-b border-b-zinc-700 border-opacity-40">
-              <h2 className="text-lg font-bold mb-2">Todas las historias</h2>
+              <h2 className="text-xl font-bold mb-2">Todas las historias</h2>
               <div className="flex flex-col gap-2">
                 <button
                   className={twMerge(
@@ -168,7 +168,7 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
                       <img className="block w-full h-full rounded-full" src="/user.webp" alt="usuario" />
                     </div>
 
-                    <span className="text-sm font-semibold text-white line-clamp-1">Martin Dev</span>
+                    <span className="text-base font-semibold text-white line-clamp-1">Martin Dev</span>
                     <span className="block text-xs text-zinc-400 whitespace-nowrap">12 h</span>
                     <button>
                       <Globe2 size={14} />
@@ -225,7 +225,7 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
                       <Heart size={16} />
                       <Heart size={16} />
                     </div>
-                    <span className="text-xs">
+                    <span className="text-sm">
                       Enviado a <span className="font-semibold">Martin Dev</span>
                     </span>
                   </div>

@@ -45,7 +45,7 @@ const Publication = () => {
 
   return (
     <>
-      <div className="max-w-2xl mx-auto bg-zinc-800 bg-opacity-50 backdrop-blur-md rounded-md shadow-md">
+      <div className="max-w-3xl w-full mx-auto bg-zinc-800 bg-opacity-50 backdrop-blur-md rounded-md shadow-md">
         <div className="p-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="relative w-[60px] h-[60px]">
@@ -56,7 +56,7 @@ const Publication = () => {
             </div>
             <div className="leading-none">
               <Link
-                className="line-clamp-1 text-sm font-semibold text-zinc-200 hover:text-zinc-100 hover:underline transition-all duration-300"
+                className="line-clamp-1 text-base font-semibold text-zinc-200 hover:text-zinc-100 hover:underline transition-all duration-300"
                 to={'/restaurants/by/martin-dev'}
               >
                 Restaurante x
@@ -64,7 +64,7 @@ const Publication = () => {
               <div className="flex flex-col md:flex-row md:items-center gap-2">
                 <Link
                   to={'/user/by/martin-dev'}
-                  className="line-clamp-1 text-xs text-zinc-400 hover:text-zinc-300 hover:underline transition-all duration-300"
+                  className="line-clamp-1 text-sm text-zinc-400 hover:text-zinc-300 hover:underline transition-all duration-300"
                 >
                   Nombre del propietario
                 </Link>
@@ -90,11 +90,11 @@ const Publication = () => {
             Hola a todos, este es mi primer proyecto de la actualización de Node.js, ya con algunos cambios en el diseño.
           </h2>
 
-          <Link className="leading-5 w-fit text-sm text-pink-500 hover:text-pink-400 hover:underline transition-all duration-300" to={'/'}>
+          <Link className="leading-5 w-fit text-base my-2 text-pink-500 hover:text-pink-400 hover:underline transition-all duration-300" to={'/'}>
             Nombre del proyecto
           </Link>
-          <p className="leading-5 text-sm text-zinc-300">Primer Proyecto de la actualización de Node.js, ya con algunos cambios en el diseño.</p>
-          <p className="leading-5 text-sm text-zinc-300">
+          <p className="leading-5 text-base text-zinc-300">Primer Proyecto de la actualización de Node.js, ya con algunos cambios en el diseño.</p>
+          <p className="leading-5 text-base text-zinc-300">
             Subida de archivos, validaciones, alertas, autenticación, creación de cuentas, REST API, múltiples rutas, por más sencillo que intente que
             fuera siempre terminan los proyectos con bastantes funciones 🧐
           </p>
@@ -193,23 +193,23 @@ const Publication = () => {
             }}
             reactionActive={reactionActive}
             classNameButton="flex-1"
-            classNameReaction="flex items-center gap-2 justify-center text-center px-4 py-2 hover:bg-zinc-800 transition-all duration-300 text-zinc-400 rounded-lg flex-1 active:scale-95 active:bg-opacity-80"
+            classNameReaction="flex items-center gap-2 justify-center text-center px-4 py-2 hover:bg-zinc-800 transition-all duration-300 text-zinc-400 rounded-lg flex-1 active:bg-opacity-60"
           >
-            <div className="flex items-center gap-2 justify-center text-center px-4 py-2 hover:bg-zinc-800 transition-all duration-300 text-zinc-400 rounded-lg flex-1 active:scale-95 active:bg-opacity-80">
+            <div className="flex items-center gap-2 justify-center text-center px-4 py-2 hover:bg-zinc-800 transition-all duration-300 text-zinc-400 rounded-lg flex-1 active:bg-opacity-86">
               <ThumbsUp size={24} className="w-[24px] h-[24px] min-w-[24px] min-h-[24px]  pointer-events-none" />
               <span className="pointer-events-none hidden md:block">Me gusta</span>
             </div>
           </Reaction>
           <label
             htmlFor="123"
-            className="flex cursor-pointer items-center gap-2 justify-center text-center px-4 py-2 hover:bg-zinc-800 transition-all duration-300 text-zinc-400 rounded-lg flex-1 active:scale-95 active:bg-opacity-80"
+            className="flex cursor-pointer items-center gap-2 justify-center text-center px-4 py-2 hover:bg-zinc-800 transition-all duration-300 text-zinc-400 rounded-lg flex-1 active:bg-opacity-60"
             onClick={toggleComment}
           >
             <MessageCircle size={24} />
             <span className="hidden md:block">Comentar</span>
           </label>
           <button
-            className="flex items-center gap-2 justify-center text-center px-4 py-2 hover:bg-zinc-800 transition-all duration-300 text-zinc-400 rounded-lg flex-1 active:scale-95 active:bg-opacity-80"
+            className="flex items-center gap-2 justify-center text-center px-4 py-2 hover:bg-zinc-800 transition-all duration-300 text-zinc-400 rounded-lg flex-1 active:bg-opacity-60"
             onClick={sharedPublication}
           >
             <Share2 size={24} />

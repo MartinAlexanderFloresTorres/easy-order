@@ -5,6 +5,7 @@ import 'swiper/css/pagination';
 
 import { Pagination } from 'swiper/modules';
 import Item from '@/best-sellers/components/Item';
+import Divider from '@/shared/components/Divider';
 
 interface Item {
   id: string;
@@ -25,8 +26,12 @@ const TheMostSold = ({ title, subtitle, to, products = [] }: TheMostSoldProps) =
   return (
     <section className="w-full">
       <div className="container mx-auto p-4">
-        <h2 className="text-center text-4xl font-extrabold text-gray-300 mb-4">{title}</h2>
-        <p className={'text-center text-sm font-medium text-gray-400 mb-14'}>{subtitle}</p>
+        <div className="mb-8 pt-2">
+          <h2 className="text-center text-4xl font-extrabold text-gray-300 mb-3">{title}</h2>
+          <p className={'text-center text-sm font-medium text-gray-400 mb-4'}>{subtitle}</p>
+          <Divider />
+        </div>
+
         <Swiper
           slidesPerView={1}
           spaceBetween={10}

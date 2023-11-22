@@ -10,9 +10,7 @@ interface TabNavigationProps {
 const TabNavigation = ({ className, classNameContainer, style }: TabNavigationProps) => {
   return (
     <section className={twMerge('select-none px-4 py-2', className)} {...(style && { style })}>
-      <div
-        className={twMerge('mt-4 sm:w-fit max-w-2xl mx-auto p-2 bg-zinc-800 bg-opacity-50 backdrop-blur-md rounded-lg shadow-lg', classNameContainer)}
-      >
+      <div className={twMerge('mt-4 max-w-3xl mx-auto p-2 bg-zinc-800 bg-opacity-50 backdrop-blur-md rounded-lg shadow-lg', classNameContainer)}>
         <div className="flex gap-2 items-center justify-center">
           <Tab
             tab={{
