@@ -1,32 +1,61 @@
 import { X } from 'lucide-react';
+import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import useLogin from '../hooks/useLogin';
+import toast from 'react-hot-toast';
 
 interface LoginFormProps {
   showClose?: boolean;
   onFinished?: () => void;
-  onSuccess?: () => void;
-  onError?: () => void;
   className?: string;
   changeToRecoverPassword: () => void;
 }
 
-const LoginForm = ({
-  showClose,
-  className = 'max-w-[450px]',
-  onFinished = () => {},
-  onError = () => {},
-  onSuccess = () => {},
-  changeToRecoverPassword,
-}: LoginFormProps) => {
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    onFinished();
+const DEFAULT_FIELDS = {
+  email: '',
+  password: '',
+};
+
+const LoginForm = ({ showClose, className = 'max-w-[450px]', onFinished = () => {}, changeToRecoverPassword }: LoginFormProps) => {
+  const [fields, setFields] = useState(DEFAULT_FIELDS);
+
+  // Hooks
+  const { loadingLogin, login } = useLogin();
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    toast.dismiss();
+
+    // Validate fields
+    if (!fields.email) {
+      return toast.error('El email es obligatorio');
+    }
+
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(fields.email)) return toast.error('El email no es válido');
+
+    if (!fields.password) {
+      return toast.error('La contraseña es obligatoria');
+    }
+
+    const { success } = await login(fields);
+    if (success) {
+      setFields(DEFAULT_FIELDS);
+      onFinished();
+    }
+  };
+
+  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setFields((prev) => ({ ...prev, [e.target.name]: value.trim() }));
   };
 
   return (
     <form
       onSubmit={onSubmit}
-      className={twMerge('border border-zinc-800 w-full mx-auto bg-zinc-900 px-6 pb-10 rounded-md flex flex-col gap-6', className)}
+      className={twMerge('border border-zinc-800 w-full mx-auto bg-zinc-900 px-6 pb-10 rounded-md flex flex-col gap-6 animate-fade-in', className)}
+      noValidate
     >
       <div className="w-full pt-5">
         {showClose && (
@@ -49,7 +78,9 @@ const LoginForm = ({
           name="email"
           id="email"
           autoFocus
-          autoComplete="off"
+          value={fields.email}
+          onChange={handleValueChange}
+          disabled={loadingLogin}
         />
       </div>
 
@@ -62,7 +93,9 @@ const LoginForm = ({
           type="password"
           name="password"
           id="password"
-          autoComplete="off"
+          value={fields.password}
+          onChange={handleValueChange}
+          disabled={loadingLogin}
         />
       </div>
 
@@ -70,8 +103,9 @@ const LoginForm = ({
         <button
           type="submit"
           className="px-5 py-2 text-[14px] w-full rounded-md text-center bg-orange-700 hover:bg-orange-600 transition-all duration-300 uppercase font-extrabold"
+          disabled={loadingLogin}
         >
-          Iniciar sesión
+          {loadingLogin ? 'Iniciando...' : 'Iniciar sesión'}
         </button>
       </div>
 
@@ -86,8 +120,6 @@ const LoginForm = ({
 
 LoginForm.defaultProps = {
   onFinished: () => {},
-  onError: () => {},
-  onSuccess: () => {},
 };
 
 export default LoginForm;

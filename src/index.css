@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
@@ -21,6 +22,21 @@ body {
 }
 button {
   line-height: normal;
+}
+button,
+input,
+textarea,
+select,
+a,
+img {
+  user-select: none;
+}
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #80808022;
+  outline-offset: 2px;
 }
 /* utilidades */
 .webkit-line-clamp-1,
@@ -63,6 +79,13 @@ button {
   to {
     opacity: 0;
   }
+}
+
+/* utilities */
+.container-2 {
+  max-width: 1700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* storie */
@@ -162,4 +185,60 @@ button {
   width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 14px));
   height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 14px));
   background: var(--swiper-pagination-bullet-inactive-color, var(--swiper-theme-color)) !important;
+}
+/* HOVER LABEL POSITION */
+.contenedor-input {
+  position: relative;
+}
+
+.label-input.active,
+.contenedor-input .input-focus:focus + .label-input,
+.contenedor-input .input-focus:focus-within + .label-input,
+.contenedor-input .input-focus:placeholder-shown + .label-input,
+.contenedor-input .input-focus:focus-visible + .label-input {
+  top: 0;
+  color: #f2f2f2;
+  font-size: 14px;
+}
+
+/* DROP ZONE CONFIG */
+body .files-ui-dropzone-children-container label {
+  font-size: 16px;
+  padding: 10px;
+}
+/* SWAL CONFIG */
+body.swal2-shown.swal2-height-auto {
+  overflow: hidden !important;
+}
+body div:where(.swal2-container) div:where(.swal2-popup).max-popup-width-2xl {
+  width: 100% !important;
+  max-width: 800px !important;
+}
+body div:where(.swal2-container) div:where(.swal2-popup).popup-image {
+  width: fit-content !important;
+  max-width: fit-content !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+body div:where(.swal2-container) div:where(.swal2-popup),
+body .swal2-popup {
+  font-size: 16px;
+  background: #181818;
+  border: 1px solid #252525;
+  color: #e6e6e6;
+}
+body .swal2-image {
+  margin-left: auto;
+  margin-right: auto;
+}
+body div:where(.swal2-container) .swal2-html-container {
+  line-height: 1.4;
+}
+
+/* MAPBOX */
+.mapboxgl-ctrl-bottom-right,
+.mapboxgl-ctrl-bottom-left {
+  display: none !important;
 }

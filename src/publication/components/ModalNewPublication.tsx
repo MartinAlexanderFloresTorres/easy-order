@@ -3,6 +3,7 @@ import { CopyPlus, Image, SmilePlus, X } from 'lucide-react';
 import { ParamsPublication } from '@/publication/interfaces';
 import Modal from '@/shared/components/Modal';
 import User from '@/shared/components/User';
+import useAccount from '@/account/hooks/useAccount';
 
 interface ModalNewPublicationProps {
   onClose: () => void;
@@ -16,6 +17,9 @@ const ModalNewPublication = ({ params, onClose }: ModalNewPublicationProps) => {
   const [videoAndImage, setVideoToImage] = useState<boolean>(() => params.video || params.image);
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>('');
+
+  // Hooks
+  const { user } = useAccount();
 
   const onCloseModal = () => {
     if (timerNewModalPublication) clearTimeout(timerNewModalPublication);
@@ -65,7 +69,7 @@ const ModalNewPublication = ({ params, onClose }: ModalNewPublicationProps) => {
           </div>
 
           <div className="p-4">
-            <User className="mb-4" />
+            {user && <User user={user} className="mb-4" />}
 
             <form className="w-full" onSubmit={onSubmit}>
               <div className="flex flex-col gap-4">

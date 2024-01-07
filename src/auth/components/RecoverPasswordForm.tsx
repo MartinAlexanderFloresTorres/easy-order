@@ -1,30 +1,50 @@
+import { useState } from 'react';
 import { ChevronLeft } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
+import useRecoverPassword from '../hooks/useRecoverPassword';
+import toast from 'react-hot-toast';
 
 interface RecoverPasswordFormProps {
   showClose?: boolean;
   onFinished?: () => void;
-  onSuccess?: () => void;
-  onError?: () => void;
   className?: string;
 }
 
-const RecoverPasswordForm = ({
-  showClose,
-  className = 'max-w-[450px]',
-  onFinished = () => {},
-  onError = () => {},
-  onSuccess = () => {},
-}: RecoverPasswordFormProps) => {
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    onFinished();
+const DEFAULT_EMAIL = '';
+
+const RecoverPasswordForm = ({ showClose, className = 'max-w-[450px]', onFinished = () => {} }: RecoverPasswordFormProps) => {
+  const [email, setEmail] = useState(DEFAULT_EMAIL);
+
+  const { loadingRecoverPassword, recoverPassword } = useRecoverPassword();
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Validate email
+    if (!email) return toast.error('Ingresa un email válido');
+
+    // Validate email format
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) return toast.error('Ingresa un email válido');
+
+    // Recover password
+    const { success } = await recoverPassword(email);
+    if (success) onFinished();
+  };
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setEmail(value.trim());
   };
 
   return (
     <form
       onSubmit={onSubmit}
-      className={twMerge('relative border border-zinc-800 w-full mx-auto bg-zinc-900 px-6 pb-10 rounded-md flex flex-col gap-6', className)}
+      className={twMerge(
+        'relative border border-zinc-800 w-full mx-auto bg-zinc-900 px-6 pb-10 rounded-md flex flex-col gap-6 animate-fade-in',
+        className,
+      )}
+      noValidate
     >
       <div className={twMerge('w-full pt-5', showClose && 'pl-4')}>
         {showClose && (
@@ -51,7 +71,9 @@ const RecoverPasswordForm = ({
           name="email"
           id="email"
           autoFocus
-          autoComplete="off"
+          value={email.trim()}
+          onChange={onChange}
+          disabled={loadingRecoverPassword}
         />
       </div>
 
@@ -59,8 +81,9 @@ const RecoverPasswordForm = ({
         <button
           type="submit"
           className="px-5 py-2 text-[14px] w-full rounded-md text-center bg-orange-700 hover:bg-orange-600 transition-all duration-300 uppercase font-extrabold"
+          disabled={loadingRecoverPassword}
         >
-          Envíar Email
+          {loadingRecoverPassword ? 'Enviando...' : 'Envíar Email'}
         </button>
       </div>
     </form>
@@ -69,8 +92,6 @@ const RecoverPasswordForm = ({
 
 RecoverPasswordForm.defaultProps = {
   onFinished: () => {},
-  onError: () => {},
-  onSuccess: () => {},
 };
 
 export default RecoverPasswordForm;

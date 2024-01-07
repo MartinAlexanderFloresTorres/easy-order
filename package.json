@@ -11,19 +11,29 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@files-ui/react": "^1.0.8",
+    "@react-google-maps/api": "^2.19.2",
     "axios": "^1.6.1",
     "lucide-react": "^0.292.0",
+    "mapbox-gl": "^3.0.1",
+    "qrcode": "^1.5.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.18.0",
-    "sweetalert2": "^11.9.0",
+    "sweetalert2": "^11.6.13",
     "swiper": "^11.0.4",
-    "tailwind-merge": "^2.0.0"
+    "tailwind-merge": "^2.0.0",
+    "use-debounce": "^10.0.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/mapbox-gl": "^2.7.19",
     "@types/node": "^20.9.0",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react-swc": "^3.3.2",

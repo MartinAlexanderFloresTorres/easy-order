@@ -38,10 +38,10 @@ const TabsLayout = () => {
       <Outlet />
       <TabNavigation
         className={twMerge(
-          'sticky z-20 transition-all duration300 p-0 sm:px-4 sm:py-2 sm:rounded-lg rounded-none',
+          'sticky z-20 transition-all duration300 p-0 rounded-none',
           showTabsBottom ? 'opacity-100 bottom-0 pointer-events-auto' : 'opacity-0 -bottom-20 pointer-events-none',
         )}
-        classNameContainer="sm:rounded-lg rounded-none sm:shadow-lg bg-opacity-70 shadow-none sm:px-4 px-2 py-1"
+        classNameContainer="sm:shadow-lg bg-opacity-70 shadow-none sm:px-4 px-2 py-1"
       />
     </>
   );

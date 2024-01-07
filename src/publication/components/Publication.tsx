@@ -45,7 +45,7 @@ const Publication = () => {
 
   return (
     <>
-      <div className="max-w-3xl w-full mx-auto bg-zinc-800 bg-opacity-50 backdrop-blur-md rounded-md shadow-md">
+      <div className="bg-zinc-800 bg-opacity-50 backdrop-blur-md rounded-md shadow-md">
         <div className="p-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="relative w-[60px] h-[60px]">

@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import { Truck, X } from 'lucide-react';
 import User from '@/shared/components/User';
 import Modal from '@/shared/components/Modal';
+import useAccount from '@/account/hooks/useAccount';
 
 interface MenuProps {
   onClose: () => void;
@@ -19,6 +20,7 @@ const Menu = ({ onClose, onOpenLogin, onOpenRegister }: MenuProps) => {
 
   // Location
   const { pathname } = useLocation();
+  const { user, authenticated } = useAccount();
 
   // Active
   const isActive = (path: string) => path === pathname;
@@ -56,10 +58,16 @@ const Menu = ({ onClose, onOpenLogin, onOpenRegister }: MenuProps) => {
     <Modal onClose={onCloseMenu} isClose={isClose}>
       <div className="select-none flex min-h-full flex-1 flex-col">
         <div className="sticky top-0 z-50 bg-zinc-900 flex flex-col sm:flex-row items-center justify-between gap-6 p-6">
-          <User />
+          {user ? (
+            <User user={user} />
+          ) : (
+            <Link to="/" className="block w-[50px] h-[50px] min-w-[50px] min-h-[50px] animate-fade-in">
+              <img width={50} height={50} src="/img/logo.png" alt="Logo" className="w-full h-full object-contain" />
+            </Link>
+          )}
           <div className="w-full sm:w-fit flex gap-1">
             <button
-              className="flex-1 sm:flex-none flex items-center gap-2 whitespace-nowrap py-4 px-10 uppercase text-center bg-pink-600 hover:bg-pink-700 transition-all duration-500 font-semibold text-white"
+              className="flex-1 sm:flex-none flex items-center justify-center gap-2 whitespace-nowrap py-4 px-10 uppercase text-center bg-pink-600 hover:bg-pink-700 transition-all duration-500 font-semibold text-white"
               onClick={onCloseMenu}
             >
               <span>Has tu pedido</span>
@@ -102,22 +110,22 @@ const Menu = ({ onClose, onOpenLogin, onOpenRegister }: MenuProps) => {
               Restaurantes
             </Link>
             <Link
-              to="/search"
+              to="/categories"
               className={twMerge(
                 'block uppercase w-fit p-2 hover:text-pink-600 text-white transition-all duration-500 text-4xl sm:text-5xl lg:text-6xl font-extrabold',
-                isActive('/restaurants') && 'text-pink-600',
+                isActive('/categories') && 'text-pink-600',
               )}
-              onMouseEnter={() => setHoverText('Buscar')}
+              onMouseEnter={() => setHoverText('Categorías')}
               onMouseLeave={() => setHoverText('')}
               onClick={onCloseMenu}
             >
-              Buscar
+              Categorías
             </Link>
             <Link
-              to="/offer-day"
+              to="/offers"
               className={twMerge(
                 'block uppercase w-fit p-2 hover:text-pink-600 text-white transition-all duration-500 text-4xl sm:text-5xl lg:text-6xl font-extrabold',
-                isActive('/offer-day') && 'text-pink-600',
+                isActive('/offers') && 'text-pink-600',
               )}
               onMouseEnter={() => setHoverText('Ofertas')}
               onMouseLeave={() => setHoverText('')}
@@ -131,7 +139,7 @@ const Menu = ({ onClose, onOpenLogin, onOpenRegister }: MenuProps) => {
                 'block uppercase w-fit p-2 hover:text-pink-600 text-white transition-all duration-500 text-4xl sm:text-5xl lg:text-6xl font-extrabold',
                 isActive('/subscription-plans') && 'text-pink-600',
               )}
-              onMouseEnter={() => setHoverText('Ofertas')}
+              onMouseEnter={() => setHoverText('Suscripciones')}
               onMouseLeave={() => setHoverText('')}
               onClick={onCloseMenu}
             >
@@ -148,28 +156,30 @@ const Menu = ({ onClose, onOpenLogin, onOpenRegister }: MenuProps) => {
           </div>
         )}
 
-        <nav className="flex w-full items-center flex-col sm:flex-row justify-center sm:justify-end gap-2 p-6">
-          <button
-            type="button"
-            className="w-full text-center sm:w-fit bg-gradient-to-l from-pink-700 to-pink-400 transition-all duration-100 p-[1px] uppercase text-sm font-semibold"
-            onClick={() => {
-              onOpenLogin();
-              onCloseMenu();
-            }}
-          >
-            <div className="px-4 py-2 text-center bg-zinc-900 text-pink-600 hover:text-pink-500 transition-all duration-300">Inicio de sesión</div>
-          </button>
-          <button
-            type="button"
-            className="w-full text-center sm:w-fit bg-gradient-to-l from-purple-700 to-purple-400 transition-all duration-100 p-[1px] uppercase text-sm font-semibold"
-            onClick={() => {
-              onOpenRegister();
-              onCloseMenu();
-            }}
-          >
-            <div className="px-4 py-2 text-center bg-zinc-900 text-purple-600 hover:text-purple-500 transition-all duration-300">Registro</div>
-          </button>
-        </nav>
+        {!authenticated && (
+          <nav className="flex w-full items-center flex-col sm:flex-row justify-center sm:justify-end gap-2 p-6">
+            <button
+              type="button"
+              className="w-full text-center sm:w-fit bg-gradient-to-l from-pink-700 to-pink-400 transition-all duration-100 p-[1px] uppercase text-base font-semibold"
+              onClick={() => {
+                onOpenLogin();
+                onCloseMenu();
+              }}
+            >
+              <div className="px-4 py-2 text-center bg-zinc-900 text-pink-600 hover:text-pink-500 transition-all duration-300">Inicio de sesión</div>
+            </button>
+            <button
+              type="button"
+              className="w-full text-center sm:w-fit bg-gradient-to-l from-purple-700 to-purple-400 transition-all duration-100 p-[1px] uppercase text-base font-semibold"
+              onClick={() => {
+                onOpenRegister();
+                onCloseMenu();
+              }}
+            >
+              <div className="px-4 py-2 text-center bg-zinc-900 text-purple-600 hover:text-purple-500 transition-all duration-300">Registro</div>
+            </button>
+          </nav>
+        )}
       </div>
     </Modal>
   );

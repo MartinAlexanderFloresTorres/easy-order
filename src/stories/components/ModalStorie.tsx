@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Link, useNavigate } from 'react-router-dom';
 import Modal from '@/shared/components/Modal';
+import { REACTIONS } from '@/publication/constants';
 import { Globe2, Heart, MoreHorizontal, Play, Plus, Send, Volume2, X } from 'lucide-react';
 
 interface Storie {
@@ -234,13 +235,18 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
                       <input
                         type="text"
                         placeholder="Escribe un comentario"
-                        className="block w-full bg-zinc-700 rounded-full py-2 pl-3 pr-10 text-sm text-zinc-200 placeholder:text-zinc-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-zinc-600"
+                        className={twMerge(
+                          'block w-full bg-zinc-700 rounded-full py-3 pl-6 pr-6 text-base text-zinc-200 placeholder:text-zinc-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-zinc-600',
+                          focusComment ? 'pr-11' : 'pr-6',
+                        )}
                         onFocus={() => setFocusComment(true)}
                         onBlur={() => setFocusComment(false)}
                       />
-                      <button className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white transition-all duration-300">
-                        <Send size={24} />
-                      </button>
+                      {focusComment && (
+                        <button className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white transition-all duration-300">
+                          <Send size={24} />
+                        </button>
+                      )}
                     </form>
 
                     <div
@@ -249,20 +255,77 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
                         animation: `${!focusComment ? 'fadeInReactions' : 'fadeOutReactions'} 0.3s ease-in-out forwards`,
                       }}
                     >
-                      <button className="hover:scale-110 transition-transform duration-300">
-                        <Heart size={24} />
+                      <button className="hover:scale-110 transition-transform duration-300 select-none">
+                        <img
+                          width={30}
+                          height={30}
+                          draggable={false}
+                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
+                          src={REACTIONS.like.url}
+                          alt={REACTIONS.like.name}
+                        />
                       </button>
-                      <button className="hover:scale-110 transition-transform duration-300">
-                        <Heart size={24} />
+                      <button className="hover:scale-110 transition-transform duration-300 select-none">
+                        <img
+                          width={30}
+                          height={30}
+                          draggable={false}
+                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
+                          src={REACTIONS.love.url}
+                          alt={REACTIONS.love.name}
+                        />
                       </button>
-                      <button className="hover:scale-110 transition-transform duration-300">
-                        <Heart size={24} />
+                      <button className="hover:scale-110 transition-transform duration-300 select-none">
+                        <img
+                          width={30}
+                          height={30}
+                          draggable={false}
+                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
+                          src={REACTIONS.care.url}
+                          alt={REACTIONS.care.name}
+                        />
                       </button>
-                      <button className="hover:scale-110 transition-transform duration-300">
-                        <Heart size={24} />
+                      <button className="hover:scale-110 transition-transform duration-300 select-none">
+                        <img
+                          width={30}
+                          height={30}
+                          draggable={false}
+                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
+                          src={REACTIONS.laugh.url}
+                          alt={REACTIONS.laugh.name}
+                        />
                       </button>
-                      <button className="hover:scale-110 transition-transform duration-300">
-                        <Heart size={24} />
+                      <button className="hover:scale-110 transition-transform duration-300 select-none">
+                        <img
+                          width={30}
+                          height={30}
+                          draggable={false}
+                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
+                          src={REACTIONS.amazed.url}
+                          alt={REACTIONS.amazed.name}
+                        />
+                      </button>
+
+                      <button className="hover:scale-110 transition-transform duration-300 select-none">
+                        <img
+                          width={30}
+                          height={30}
+                          draggable={false}
+                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
+                          src={REACTIONS.sad.url}
+                          alt={REACTIONS.sad.name}
+                        />
+                      </button>
+
+                      <button className="hover:scale-110 transition-transform duration-300 select-none">
+                        <img
+                          width={30}
+                          height={30}
+                          draggable={false}
+                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
+                          src={REACTIONS.angry.url}
+                          alt={REACTIONS.angry.name}
+                        />
                       </button>
                     </div>
                   </div>

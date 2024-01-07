@@ -3,12 +3,15 @@ import { Film, Image } from 'lucide-react';
 import Avatar from '@/shared/components/Avatar';
 import ModalNewPublication from '@/publication/components/ModalNewPublication';
 import { ParamsPublication } from '@/publication/interfaces';
+import useAccount from '@/account/hooks/useAccount';
 
 const DEFAULT_PARAMS = { image: false, video: false };
 
 const NewPublication = () => {
   const [showModalNewPublication, setShowModalNewPublication] = useState(false);
   const [params, setParams] = useState<ParamsPublication>(DEFAULT_PARAMS);
+
+  const { user } = useAccount();
 
   const openModalNewPublication = (image: boolean, video: boolean) => {
     setParams({ image, video });
@@ -20,11 +23,12 @@ const NewPublication = () => {
     setShowModalNewPublication(false);
   };
 
+  if (!user) return null;
   return (
     <>
-      <div className="max-w-3xl w-full mx-auto bg-zinc-800 bg-opacity-50 backdrop-blur-md rounded-md shadow-md">
+      <div className="w-full bg-zinc-800 bg-opacity-50 backdrop-blur-md rounded-md shadow-md">
         <div className="p-3 flex items-center justify-between gap-4">
-          <Avatar />
+          <Avatar alt={user.name} storieId="213" url={user.photo ? user.photo.secure_url : '/img/default-user.png'} />
           <button
             className="text-left px-4 py-3 bg-zinc-800 hover:bg-zinc-700 hover:bg-opacity-50 transition-all duration-300 text-zinc-400 rounded-lg flex-1 active:bg-opacity-80"
             onClick={() => openModalNewPublication(false, false)}

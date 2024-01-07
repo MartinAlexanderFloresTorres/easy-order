@@ -12,8 +12,12 @@ export default {
         },
       },
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'fade-out': 'fadeOut 0.5s ease-in-out',
+        'fade-in': 'fadeIn 0.2s ease-in-out',
+        'fade-out': 'fadeOut 02s ease-in-out',
+      },
+      height: {
+        view: 'calc(100vh - 110px)',
+        'tablet-view': 'calc(100vh - 158px)',
       },
     },
   },

@@ -13,22 +13,22 @@ const RecoverPasswordPage = () => {
       }}
     >
       <RecoverPasswordForm
-        onSuccess={() => {
+        onFinished={() => {
           const { from } = state || { from: { pathname: '/' } };
           navigate(from);
         }}
       />
 
-      <div className="max-w-[450px] border border-zinc-800 w-full mx-auto bg-zinc-900 p-5 rounded-md flex flex-wrap items-center gap-6">
+      <div className="max-w-[450px] border border-zinc-800 w-full mx-auto bg-zinc-900 p-5 rounded-md flex flex-wrap items-center justify-center gap-6 animate-fade-in">
         <Link
           to="/auth/login"
-          className="w-full text-center sm:w-fit items-center gap-2 hover:bg-zinc-800 border border-zinc-800 transition-all duration-100 text-zinc-100 px-5 py-3 uppercase text-sm font-semibold"
+          className="flex-1 text-center items-center gap-2 hover:bg-zinc-800 border border-zinc-800 transition-all duration-100 text-zinc-100 px-5 py-3 uppercase text-sm font-semibold"
         >
           Iniciar sesión
         </Link>
         <Link
           to="/auth/register"
-          className="w-full text-center sm:w-fit items-center gap-2 bg-zinc-800 border border-zinc-800 transition-all duration-100 text-zinc-100 px-5 py-3 uppercase text-sm font-semibold"
+          className="flex-1 text-center items-center gap-2 bg-zinc-800 border border-zinc-800 transition-all duration-100 text-zinc-100 px-5 py-3 uppercase text-sm font-semibold"
         >
           Registrarse
         </Link>

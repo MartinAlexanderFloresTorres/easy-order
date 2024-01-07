@@ -26,7 +26,7 @@ const useBodyOverflow = ({ onClose = () => {}, showPadding = true }: useBodyOver
       }
     }
 
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflowY = 'hidden';
 
     window.addEventListener('keydown', handleKeyDown);
 
@@ -39,7 +39,7 @@ const useBodyOverflow = ({ onClose = () => {}, showPadding = true }: useBodyOver
         }
       }
 
-      document.body.style.overflow = 'auto';
+      document.body.style.overflowY = 'scroll';
 
       window.removeEventListener('keydown', handleKeyDown);
     };
