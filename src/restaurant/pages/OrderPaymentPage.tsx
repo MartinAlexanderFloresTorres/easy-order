@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Ban, Download, QrCode, Ticket, X } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
@@ -30,7 +30,7 @@ const OrderPaymentPage = () => {
   const { loadingPayOrder, payOrder } = usePayOrder();
 
   useEffect(() => {
-    if (!authenticated) return;
+    if (!authenticated) return setLoading(false);
 
     (async () => {
       try {
@@ -87,7 +87,7 @@ const OrderPaymentPage = () => {
 
   const handleShowDetails = () => setShowDetails((prev) => !prev);
 
-  if (loading || loadingAuthenticate || !authenticated) {
+  if (loading || loadingAuthenticate) {
     return (
       <div className="p-6">
         <Spinner className="mx-auto" />
@@ -96,7 +96,10 @@ const OrderPaymentPage = () => {
   }
 
   if (!authenticated) {
-    return Navigate({ to: '/auth/login', state: { from: pathname } });
+    setTimeout(() => {
+      navigate('/auth/login', { state: { from: pathname } });
+    }, 0);
+    return null;
   }
 
   if (!order) return;
