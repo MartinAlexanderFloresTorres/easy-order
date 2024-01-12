@@ -39,9 +39,7 @@ function SearchMap({ onNext, address, DEFAULT_CENTER_MAP, setAddress, search, se
   };
 
   const getAddresFromLngLat = async (lngLat: [number, number]): Promise<string> => {
-    const { data } = await axios.get(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${lngLat[0]},${lngLat[1]}.json?access_token=${mapboxgl.accessToken}`,
-    );
+    const { data } = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lngLat[0]},${lngLat[1]}.json?access_token=${mapboxgl.accessToken}`);
 
     const address = data.features[0].place_name;
     setAddress(address);
@@ -63,6 +61,8 @@ function SearchMap({ onNext, address, DEFAULT_CENTER_MAP, setAddress, search, se
        </div>
       `,
     );
+
+    console.log({ lngLat });
 
     const newMarker = new mapboxgl.Marker({
       draggable: true,
@@ -151,6 +151,8 @@ function SearchMap({ onNext, address, DEFAULT_CENTER_MAP, setAddress, search, se
       const [lng, lat] = data.features[0].center;
       if (!mapBoxRef.current) return;
       mapBoxRef.current.setCenter([lng, lat]);
+      console.log({ lng, lat });
+
       mapBoxRef.current.setZoom(12);
     }
   }, 1000);
@@ -185,23 +187,9 @@ function SearchMap({ onNext, address, DEFAULT_CENTER_MAP, setAddress, search, se
 
       <div className="mb-4 relative w-full">
         <SearchIcon size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-zinc-200 z-10" />
-        <input
-          type="text"
-          className={twMerge(
-            'w-full border pl-11 border-zinc-700 backdrop-blur-lg border-opacity-50 rounded-full py-4 text-base text-zinc-200 bg-zinc-800 hover:bg-opacity-60 bg-opacity-50 outline-none focus:border-opacity-90 transition-colors duration-300 placeholder:text-zinc-400',
-            search.length <= 0 ? 'pr-4' : 'pr-11',
-          )}
-          autoFocus
-          value={search}
-          onChange={handleSearch}
-          placeholder="Ingresa la dirección de entrega"
-        />
+        <input type="text" className={twMerge('w-full border pl-11 border-zinc-700 backdrop-blur-lg border-opacity-50 rounded-full py-4 text-base text-zinc-200 bg-zinc-800 hover:bg-opacity-60 bg-opacity-50 outline-none focus:border-opacity-90 transition-colors duration-300 placeholder:text-zinc-400', search.length <= 0 ? 'pr-4' : 'pr-11')} autoFocus value={search} onChange={handleSearch} placeholder="Ingresa la dirección de entrega" />
         {search && (
-          <button
-            type="button"
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-zinc-200 hover:text-white transition-all duration-300"
-            onClick={clearSearch}
-          >
+          <button type="button" className="absolute right-4 top-1/2 transform -translate-y-1/2 text-zinc-200 hover:text-white transition-all duration-300" onClick={clearSearch}>
             <X size={20} />
           </button>
         )}
@@ -213,11 +201,7 @@ function SearchMap({ onNext, address, DEFAULT_CENTER_MAP, setAddress, search, se
             <p className="text-sm text-zinc-400">Dirección de entrega</p>
             <p className="text-base text-zinc-200">{address}</p>
           </div>
-          <button
-            type="button"
-            className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-zinc-800 hover:bg-zinc-700 transition-all duration-300 rounded-md font-semibold"
-            onClick={removeMarker}
-          >
+          <button type="button" className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-zinc-800 hover:bg-zinc-700 transition-all duration-300 rounded-md font-semibold" onClick={removeMarker}>
             Remover
           </button>
         </div>

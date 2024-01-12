@@ -12,20 +12,6 @@ export const COLORS_TEXT = {
   enterprise: 'text-red-400',
 };
 
-/* 
-feature.available
-                            ? '#4b4b4b'
-                            : type === 'free'
-                            ? '#10B981'
-                            : type === 'basic'
-                            ? '#3B82F6'
-                            : type === 'premium'
-                            ? '#8B5CF6'
-                            : type === 'enterprise'
-                            ? '#EF4444'
-                            : '#fff'
- */
-
 export const COLORS_FEATURE = {
   free: '#10B981',
   basic: '#3B82F6',

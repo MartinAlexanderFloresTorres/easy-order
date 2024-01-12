@@ -3,20 +3,81 @@ import { OrderStatus, PaymentStatus } from '@/restaurant/types';
 
 export interface OrderPayment {
   _id: string;
-  user: UserOrderPayment;
-  restaurant: RestaurantOrderPayment;
+  user: User;
+  restaurant: Restaurant;
   status: OrderStatus;
+  shippingAddress: string;
+  latitude: number;
+  longitude: number;
   shippingCost: number;
   discount: number;
-  coupon: CouponOrderPayment | null;
-  paymentMethod: string;
-  paymentStatus: PaymentStatus;
-  items: ItemOrderPayment[];
+  coupon: null | CouponOrderPayment;
   subTotal: number;
   total: number;
-  shippingAddress: string;
+  paymentMethod: string;
+  paymentStatus: PaymentStatus;
+  items: Item[];
   createdAt: string;
   updatedAt: string;
+}
+
+export interface Item {
+  menu: Menu;
+  discount: number;
+  price: number;
+  quantity: number;
+  _id: string;
+}
+
+export interface Menu {
+  _id: string;
+  name: string;
+  images: Logo[];
+  slug: string;
+}
+
+export interface Logo {
+  public_id: string;
+  secure_url: string;
+  url: string;
+  width: number;
+  height: number;
+  format: string;
+  resource_type: string;
+  folder: string;
+  created_at: string;
+  _id: string;
+}
+
+export interface Restaurant {
+  _id: string;
+  name: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  phone: string;
+  openingHours: string;
+  closingTime: string;
+  logo: Logo;
+  paymentMethods: PaymentMethod[];
+  slug: string;
+}
+
+export interface PaymentMethod {
+  name: string;
+  image: string;
+  _id: string;
+}
+
+export interface User {
+  _id: string;
+  name: string;
+  lastname: string;
+  photo: null;
+  city: string;
+  country: string;
+  phone: null;
+  slug: string;
 }
 
 export interface CouponOrderPayment {

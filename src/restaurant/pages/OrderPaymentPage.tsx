@@ -12,6 +12,7 @@ import Spinner from '@/shared/components/Spinner';
 import usePayOrder from '@/restaurant/hooks/usePayOrder';
 import Modal from '@/shared/components/Modal';
 import { QRCodeGenerator } from '@/helpers';
+import TraceMap from '../components/TraceMap';
 
 let timer: NodeJS.Timeout | null = null;
 
@@ -143,6 +144,7 @@ const OrderPaymentPage = () => {
             <span className="text-pink-400 text-sm">{order.coupon.code}</span>
           </div>
         )}
+
         <div className="rounded-md bg-zinc-800 bg-opacity-80 border border-zinc-700 border-opacity-50">
           <div className="relative bg-zinc-800 bg-opacity-80 px-4 py-3 flex items-center justify-between border-b border-zinc-700 border-opacity-50">
             <div className="flex flex-col gap-1">
@@ -170,27 +172,14 @@ const OrderPaymentPage = () => {
                     })
                   }
                 >
-                  <img
-                    src={QRCodeGenerator(`${window.location.origin}/order/${order.restaurant._id}/by/${order._id}`)}
-                    alt={`Código QR del restaurante ${order.restaurant.name}`}
-                    className="w-full h-full object-contain"
-                  />
+                  <img src={QRCodeGenerator(`${window.location.origin}/order/${order.restaurant._id}/by/${order._id}`)} alt={`Código QR del restaurante ${order.restaurant.name}`} className="w-full h-full object-contain" />
                   {isCancelledOrRejected && (
                     <div className="absolute inset-0 bg-black backdrop-blur-[1.2px] bg-opacity-50 flex items-center justify-center">
                       <Ban strokeWidth={2} size={30} className="text-red-500" />
                     </div>
                   )}
                 </button>
-                <button
-                  className=" flex items-center justify-center w-full text-center text-sm px-3 py-1 disabled:cursor-not-allowed disabled:border-gray-600 disabled:text-gray-600 disabled:bg-gray-600 disabled:bg-opacity-10 disabled:hover:bg-opacity-10 bg-pink-600 text-pink-600 border border-pink-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20 transition-all duration-300"
-                  onClick={() =>
-                    downloadFile(
-                      QRCodeGenerator(`${window.location.origin}/order/${order.restaurant._id}/by/${order._id}`),
-                      `qr orden ${order.restaurant.name}`,
-                    )
-                  }
-                  disabled={isCancelledOrRejected}
-                >
+                <button className=" flex items-center justify-center w-full text-center text-sm px-3 py-1 disabled:cursor-not-allowed disabled:border-gray-600 disabled:text-gray-600 disabled:bg-gray-600 disabled:bg-opacity-10 disabled:hover:bg-opacity-10 bg-pink-600 text-pink-600 border border-pink-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20 transition-all duration-300" onClick={() => downloadFile(QRCodeGenerator(`${window.location.origin}/order/${order.restaurant._id}/by/${order._id}`), `qr orden ${order.restaurant.name}`)} disabled={isCancelledOrRejected}>
                   <Download size={16} />
                 </button>
               </div>
@@ -208,18 +197,14 @@ const OrderPaymentPage = () => {
                 <div className="flex items-center gap-4">
                   <div className="relative w-16 h-16">
                     <img src={item.menu.images[0].secure_url} alt={item.menu.name} className="w-full h-full rounded-full object-cover" />
-                    <span className="absolute -top-[5px] -right-[5px] bg-pink-600 text-xs font-extrabold text-white rounded-full w-[30px] h-[30px] flex items-center justify-center">
-                      {item.quantity}
-                    </span>
+                    <span className="absolute -top-[5px] -right-[5px] bg-pink-600 text-xs font-extrabold text-white rounded-full w-[30px] h-[30px] flex items-center justify-center">{item.quantity}</span>
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-300 line-clamp-1">{item.menu.name}</h4>
                     <div className="grid grid-cols-3 gap-8 items-center">
                       <div className="flex items-center gap-2">
                         <p className="text-xl text-gray-200">S/. {item.price}</p>
-                        {item.discount > 0 && (
-                          <p className="-translate-y-1 text-xs px-3 py-[2px] bg-pink-600 text-white rounded-md">-{item.discount}</p>
-                        )}
+                        {item.discount > 0 && <p className="-translate-y-1 text-xs px-3 py-[2px] bg-pink-600 text-white rounded-md">-{item.discount}</p>}
                       </div>
                     </div>
                   </div>
@@ -231,23 +216,11 @@ const OrderPaymentPage = () => {
           <div className="rounded-md whitespace-nowrap overflow-auto bg-zinc-800 bg-opacity-80 border-b border-zinc-700 border-opacity-50">
             <div className="w-full px-4 py-3 flex flex-col md:flex-row gap-4 items-center justify-center md:justify-between">
               <div className="flex items-stretch justify-end gap-2">
-                {order.paymentStatus === 'PENDING' && (order.status === 'READY' || order.status === 'SENDING') && (
-                  <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-yellow-500 text-yellow-500 border border-yellow-500 bg-opacity-10 border-opacity-40">
-                    Pago Pendiente
-                  </div>
-                )}
+                {order.paymentStatus === 'PENDING' && (order.status === 'READY' || order.status === 'SENDING') && <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-yellow-500 text-yellow-500 border border-yellow-500 bg-opacity-10 border-opacity-40">Pago Pendiente</div>}
 
-                {order.paymentStatus === 'PAID' && (
-                  <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-green-500 text-green-500 border border-green-500 bg-opacity-10 border-opacity-40">
-                    Pagado
-                  </div>
-                )}
+                {order.paymentStatus === 'PAID' && <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-green-500 text-green-500 border border-green-500 bg-opacity-10 border-opacity-40">Pagado</div>}
 
-                {order.paymentStatus === 'CANCELLED' && (
-                  <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-red-500 text-red-500 border border-red-500 bg-opacity-10 border-opacity-40">
-                    Pago Cancelado
-                  </div>
-                )}
+                {order.paymentStatus === 'CANCELLED' && <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-red-500 text-red-500 border border-red-500 bg-opacity-10 border-opacity-40">Pago Cancelado</div>}
 
                 {order.status === 'PREPARING' && (
                   <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-blue-500 text-blue-500 border border-blue-500 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">
@@ -256,41 +229,17 @@ const OrderPaymentPage = () => {
                   </div>
                 )}
 
-                {order.status === 'READY' && (
-                  <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-blue-500 text-blue-500 border border-blue-500 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">
-                    Orden lista
-                  </div>
-                )}
+                {order.status === 'READY' && <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-blue-500 text-blue-500 border border-blue-500 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">Orden lista</div>}
 
-                {order.status === 'DELIVERED' && (
-                  <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-blue-500 text-blue-500 border border-blue-500 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">
-                    Entregado
-                  </div>
-                )}
+                {order.status === 'DELIVERED' && <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-blue-500 text-blue-500 border border-blue-500 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">Entregado</div>}
 
-                {order.status === 'CANCELLED' && (
-                  <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-red-500 text-red-500 borde bg-opacity-10">
-                    Cancelado
-                  </div>
-                )}
+                {order.status === 'CANCELLED' && <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-red-500 text-red-500 borde bg-opacity-10">Cancelado</div>}
 
-                {order.status === 'REJECTED' && (
-                  <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-red-500 text-red-500 border border-red-500 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">
-                    Rechazado
-                  </div>
-                )}
+                {order.status === 'REJECTED' && <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-red-500 text-red-500 border border-red-500 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">Rechazado</div>}
 
-                {order.status === 'CONFIRMED' && (
-                  <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-3 py-1 font-semibold bg-green-600 text-green-600 border border-green-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">
-                    Orden tomada
-                  </div>
-                )}
+                {order.status === 'CONFIRMED' && <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-3 py-1 font-semibold bg-green-600 text-green-600 border border-green-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">Orden tomada</div>}
 
-                {order.status === 'COMPLETED' && (
-                  <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-3 py-1 font-semibold bg-pink-600 text-pink-600 border border-pink-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">
-                    Completado
-                  </div>
-                )}
+                {order.status === 'COMPLETED' && <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-3 py-1 font-semibold bg-pink-600 text-pink-600 border border-pink-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">Completado</div>}
 
                 {order.status === 'SENDING' && (
                   <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-blue-500 text-blue-500 border border-blue-500 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">
@@ -304,14 +253,7 @@ const OrderPaymentPage = () => {
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2 text-center">
                     <b className="text-gray-400">Sub Total:</b>
-                    <p
-                      className={twMerge(
-                        'bg-zinc-700 text-sm font-extrabold text-zinc-300 rounded-full px-4 py-2 text-center',
-                        order.coupon && 'line-through',
-                      )}
-                    >
-                      S/. {order.subTotal}
-                    </p>
+                    <p className={twMerge('bg-zinc-700 text-sm font-extrabold text-zinc-300 rounded-full px-4 py-2 text-center', order.coupon && 'line-through')}>S/. {order.subTotal}</p>
                   </div>
                   <div className="flex items-center gap-2 text-center">
                     <b className="text-gray-100">Total:</b>
@@ -321,12 +263,7 @@ const OrderPaymentPage = () => {
                 {user && user.restaurant && user.restaurant._id === order.restaurant._id && (
                   <>
                     {order.paymentStatus === 'PENDING' && (order.status === 'READY' || order.status === 'SENDING') && (
-                      <button
-                        type="button"
-                        className="sm:w-fit w-full text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-3 py-2 font-semibold bg-pink-600 text-pink-600 border border-pink-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20"
-                        onClick={handlePayOrder}
-                        disabled={loadingPayOrder}
-                      >
+                      <button type="button" className="sm:w-fit w-full text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-3 py-2 font-semibold bg-pink-600 text-pink-600 border border-pink-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20" onClick={handlePayOrder} disabled={loadingPayOrder}>
                         {loadingPayOrder ? 'Pagando...' : 'Pagar'}
                       </button>
                     )}
@@ -337,22 +274,17 @@ const OrderPaymentPage = () => {
           </div>
 
           <div className="w-full rounded-md whitespace-nowrap flex gap-4 justify-end items-center p-4 bg-zinc-800 bg-opacity-80">
-            <button
-              type="button"
-              className="text-center min-w-[70px] text-sm transition-colors duration-300 rounded-md px-3 py-2 font-semibold bg-gray-400 text-gray-400 border border-gray-400 bg-opacity-10 border-opacity-40 hover:bg-opacity-20"
-              onClick={() => navigate(-1)}
-            >
+            <button type="button" className="text-center min-w-[70px] text-sm transition-colors duration-300 rounded-md px-3 py-2 font-semibold bg-gray-400 text-gray-400 border border-gray-400 bg-opacity-10 border-opacity-40 hover:bg-opacity-20" onClick={() => navigate(-1)}>
               Volver
             </button>
-            <button
-              type="button"
-              className="text-center min-w-[70px] text-sm transition-colors duration-300 rounded-md px-3 py-2 font-semibold bg-pink-600 text-pink-600 border border-pink-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20"
-              onClick={handleShowDetails}
-            >
+            <button type="button" className="text-center min-w-[70px] text-sm transition-colors duration-300 rounded-md px-3 py-2 font-semibold bg-pink-600 text-pink-600 border border-pink-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20" onClick={handleShowDetails}>
               Mostrar detalles
             </button>
           </div>
         </div>
+
+        {/* MAPA */}
+        <TraceMap deliveryAddress={order.shippingAddress} lat={order.latitude} lng={order.longitude} restaurant={order.restaurant} />
       </div>
 
       {showDetails && (
@@ -380,63 +312,37 @@ const OrderPaymentPage = () => {
                   <table className="table-auto w-full">
                     <tbody>
                       <tr>
-                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">
-                          FECHA
-                        </td>
-                        <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">
-                          {formatDate(order.createdAt)}
-                        </td>
+                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">FECHA</td>
+                        <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">{formatDate(order.createdAt)}</td>
                       </tr>
                       <tr>
-                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">
-                          HORA
-                        </td>
-                        <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">
-                          {formatTime(order.createdAt)}
-                        </td>
+                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">HORA</td>
+                        <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">{formatTime(order.createdAt)}</td>
                       </tr>
                       <tr>
-                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">
-                          Nombre
-                        </td>
+                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">Nombre</td>
                         <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">
                           {order.user.name} {order.user.lastname}
                         </td>
                       </tr>
                       <tr>
-                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">
-                          Telefono
-                        </td>
-                        <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">
-                          {order.user.phone || 'No tiene'}
-                        </td>
+                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">Telefono</td>
+                        <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">{order.user.phone || 'No tiene'}</td>
                       </tr>
                       <tr>
-                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">
-                          Pais
-                        </td>
-                        <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">
-                          {order.user.country}
-                        </td>
+                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">Pais</td>
+                        <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">{order.user.country}</td>
                       </tr>
                       <tr>
-                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">
-                          Ciudad
-                        </td>
+                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">Ciudad</td>
                         <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">{order.user.city}</td>
                       </tr>
                       <tr>
-                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">
-                          Direccion
-                        </td>
-                        <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">
-                          {order.shippingAddress}
-                        </td>
+                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">Direccion</td>
+                        <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">{order.shippingAddress}</td>
                       </tr>
                       <tr>
-                        <td className="px-3 py-2 text-sm text-left font-bold border-r border-zinc-700 border-opacity-50 text-gray-300">
-                          Restaurante
-                        </td>
+                        <td className="px-3 py-2 text-sm text-left font-bold border-r border-zinc-700 border-opacity-50 text-gray-300">Restaurante</td>
                         <td className="px-3 py-2 text-left text-gray-300 text-base">{order.restaurant.name}</td>
                       </tr>
                     </tbody>
@@ -451,9 +357,7 @@ const OrderPaymentPage = () => {
                   <table className="table-auto w-full">
                     <thead>
                       <tr>
-                        <th className="px-3 py-2 text-sm text-center border-b border-r border-zinc-700 border-opacity-50 text-gray-300">
-                          Descripción
-                        </th>
+                        <th className="px-3 py-2 text-sm text-center border-b border-r border-zinc-700 border-opacity-50 text-gray-300">Descripción</th>
                         <th className="px-3 py-2 text-sm text-center border-b border-r border-zinc-700 border-opacity-50 text-gray-300">Cantidad</th>
                         <th className="px-3 py-2 text-sm text-center border-b border-zinc-700 border-opacity-50 text-gray-300">Precio</th>
                       </tr>
@@ -478,23 +382,15 @@ const OrderPaymentPage = () => {
                   <table className="table-auto w-full">
                     <tbody>
                       <tr>
-                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">
-                          Descuento
-                        </td>
+                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">Descuento</td>
                         <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">{order.discount}</td>
                       </tr>
                       <tr>
-                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">
-                          Costo envio
-                        </td>
-                        <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">
-                          {order.shippingCost}
-                        </td>
+                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">Costo envio</td>
+                        <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">{order.shippingCost}</td>
                       </tr>
                       <tr>
-                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">
-                          SubTotal
-                        </td>
+                        <td className="px-3 py-2 text-sm text-left font-bold border-b border-r border-zinc-700 border-opacity-50 text-gray-300">SubTotal</td>
                         <td className="px-3 py-2 text-left border-b border-zinc-700 border-opacity-50 text-gray-300 text-base">{order.subTotal}</td>
                       </tr>
                       <tr>
@@ -508,17 +404,10 @@ const OrderPaymentPage = () => {
             </div>
 
             <div className="max-w-2xl w-full mx-auto bg-zinc-800 px-10 py-2 border border-t-0 border-zinc-700 border-opacity-50 flex items-center justify-end gap-4">
-              <button
-                type="button"
-                className="text-center min-w-[70px] text-sm transition-colors duration-300 rounded-md px-3 py-2 font-semibold bg-sky-600 text-sky-600 border border-sky-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20"
-              >
+              <button type="button" className="text-center min-w-[70px] text-sm transition-colors duration-300 rounded-md px-3 py-2 font-semibold bg-sky-600 text-sky-600 border border-sky-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">
                 Imprimir
               </button>
-              <button
-                type="button"
-                className="text-center min-w-[70px] text-sm transition-colors duration-300 rounded-md px-3 py-2 font-semibold bg-pink-600 text-pink-600 border border-pink-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20"
-                onClick={onCloseModal}
-              >
+              <button type="button" className="text-center min-w-[70px] text-sm transition-colors duration-300 rounded-md px-3 py-2 font-semibold bg-pink-600 text-pink-600 border border-pink-600 bg-opacity-10 border-opacity-40 hover:bg-opacity-20" onClick={onCloseModal}>
                 Cerrar
               </button>
             </div>
