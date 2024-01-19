@@ -52,20 +52,14 @@ const Publication = () => {
               <Link to={'/restaurants/by/martin-dev'}>
                 <img className="w-full h-full object-cover rounded-md block object-center" src="/user.webp" alt="banner" />
               </Link>
-              <Avatar className="absolute bottom-0 right-0 w-[30px] h-[30px] min-w-[30px] min-h-[30px]" />
+              <Avatar alt="avatar" storieId="123" url="/user.webp" className="absolute bottom-0 right-0 w-[30px] h-[30px] min-w-[30px] min-h-[30px]" />
             </div>
             <div className="leading-none">
-              <Link
-                className="line-clamp-1 text-base font-semibold text-zinc-200 hover:text-zinc-100 hover:underline transition-all duration-300"
-                to={'/restaurants/by/martin-dev'}
-              >
+              <Link className="line-clamp-1 text-base font-semibold text-zinc-200 hover:text-zinc-100 hover:underline transition-all duration-300" to={'/restaurants/by/martin-dev'}>
                 Restaurante x
               </Link>
               <div className="flex flex-col md:flex-row md:items-center gap-2">
-                <Link
-                  to={'/user/by/martin-dev'}
-                  className="line-clamp-1 text-sm text-zinc-400 hover:text-zinc-300 hover:underline transition-all duration-300"
-                >
+                <Link to={'/user/by/martin-dev'} className="line-clamp-1 text-sm text-zinc-400 hover:text-zinc-300 hover:underline transition-all duration-300">
                   Nombre del propietario
                 </Link>
 
@@ -86,18 +80,13 @@ const Publication = () => {
         </div>
 
         <div className="leading-5 px-3 pt-1 pb-3 flex flex-col gap-1">
-          <h2 className="leading-5 text-lg text-zinc-200">
-            Hola a todos, este es mi primer proyecto de la actualización de Node.js, ya con algunos cambios en el diseño.
-          </h2>
+          <h2 className="leading-5 text-lg text-zinc-200">Ignauguración del restaurante</h2>
 
           <Link className="leading-5 w-fit text-base my-2 text-pink-500 hover:text-pink-400 hover:underline transition-all duration-300" to={'/'}>
             Nombre del proyecto
           </Link>
-          <p className="leading-5 text-base text-zinc-300">Primer Proyecto de la actualización de Node.js, ya con algunos cambios en el diseño.</p>
-          <p className="leading-5 text-base text-zinc-300">
-            Subida de archivos, validaciones, alertas, autenticación, creación de cuentas, REST API, múltiples rutas, por más sencillo que intente que
-            fuera siempre terminan los proyectos con bastantes funciones 🧐
-          </p>
+          <p className="leading-5 text-base text-zinc-300">Agradece a todos los que nos acompañaron en la inauguración de nuestro restaurante.</p>
+          <p className="leading-5 text-base text-zinc-300">Con la presencia de autoridades y personalidades de la ciudad. </p>
         </div>
 
         <div role="button" className="block w-full select-none" onClick={openModalPublication}>
@@ -122,40 +111,22 @@ const Publication = () => {
               <button className="border-2 border-zinc-800 rounded-full hover:scale-110 transition-all duration-300 z-10" onClick={openModalReactions}>
                 <img width={20} height={20} src={REACTIONS.like.url} alt={REACTIONS.like.name} />
               </button>
-              <button
-                className="-ml-3 border-2 border-zinc-800 rounded-full hover:scale-110 transition-all duration-300 z-10"
-                onClick={openModalReactions}
-              >
+              <button className="-ml-3 border-2 border-zinc-800 rounded-full hover:scale-110 transition-all duration-300 z-10" onClick={openModalReactions}>
                 <img width={20} height={20} src={REACTIONS.love.url} alt={REACTIONS.love.name} />
               </button>
-              <button
-                className="-ml-3 border-2 border-zinc-800 rounded-full hover:scale-110 transition-all duration-300 z-10"
-                onClick={openModalReactions}
-              >
+              <button className="-ml-3 border-2 border-zinc-800 rounded-full hover:scale-110 transition-all duration-300 z-10" onClick={openModalReactions}>
                 <img width={20} height={20} src={REACTIONS.care.url} alt={REACTIONS.care.name} />
               </button>
-              <button
-                className="-ml-3 border-2 border-zinc-800 rounded-full hover:scale-110 transition-all duration-300 z-10"
-                onClick={openModalReactions}
-              >
+              <button className="-ml-3 border-2 border-zinc-800 rounded-full hover:scale-110 transition-all duration-300 z-10" onClick={openModalReactions}>
                 <img width={20} height={20} src={REACTIONS.laugh.url} alt={REACTIONS.laugh.name} />
               </button>
-              <button
-                className="-ml-3 border-2 border-zinc-800 rounded-full hover:scale-110 transition-all duration-300 z-10"
-                onClick={openModalReactions}
-              >
+              <button className="-ml-3 border-2 border-zinc-800 rounded-full hover:scale-110 transition-all duration-300 z-10" onClick={openModalReactions}>
                 <img width={20} height={20} src={REACTIONS.amazed.url} alt={REACTIONS.amazed.name} />
               </button>
-              <button
-                className="-ml-3 border-2 border-zinc-800 rounded-full hover:scale-110 transition-all duration-300 z-10"
-                onClick={openModalReactions}
-              >
+              <button className="-ml-3 border-2 border-zinc-800 rounded-full hover:scale-110 transition-all duration-300 z-10" onClick={openModalReactions}>
                 <img width={20} height={20} src={REACTIONS.sad.url} alt={REACTIONS.sad.name} />
               </button>
-              <button
-                className="-ml-3 border-2 border-zinc-800 rounded-full hover:scale-110 transition-all duration-300 z-10"
-                onClick={openModalReactions}
-              >
+              <button className="-ml-3 border-2 border-zinc-800 rounded-full hover:scale-110 transition-all duration-300 z-10" onClick={openModalReactions}>
                 <img width={20} height={20} src={REACTIONS.angry.url} alt={REACTIONS.angry.name} />
               </button>
             </div>
@@ -200,18 +171,11 @@ const Publication = () => {
               <span className="pointer-events-none hidden md:block">Me gusta</span>
             </div>
           </Reaction>
-          <label
-            htmlFor="123"
-            className="flex cursor-pointer items-center gap-2 justify-center text-center px-4 py-2 hover:bg-zinc-800 transition-all duration-300 text-zinc-400 rounded-lg flex-1 active:bg-opacity-60"
-            onClick={toggleComment}
-          >
+          <label htmlFor="123" className="flex cursor-pointer items-center gap-2 justify-center text-center px-4 py-2 hover:bg-zinc-800 transition-all duration-300 text-zinc-400 rounded-lg flex-1 active:bg-opacity-60" onClick={toggleComment}>
             <MessageCircle size={24} />
             <span className="hidden md:block">Comentar</span>
           </label>
-          <button
-            className="flex items-center gap-2 justify-center text-center px-4 py-2 hover:bg-zinc-800 transition-all duration-300 text-zinc-400 rounded-lg flex-1 active:bg-opacity-60"
-            onClick={sharedPublication}
-          >
+          <button className="flex items-center gap-2 justify-center text-center px-4 py-2 hover:bg-zinc-800 transition-all duration-300 text-zinc-400 rounded-lg flex-1 active:bg-opacity-60" onClick={sharedPublication}>
             <Share2 size={24} />
             <span className="hidden md:block">Compartir</span>
           </button>

@@ -43,32 +43,17 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
   };
 
   return (
-    <Modal
-      onClose={onCloseModalStorie}
-      isClose={isClose}
-      className={twMerge(
-        ' flex flex-col items-center justify-center overflow-hidden',
-        !showClose ? 'bg-transparent' : 'bg-zinc-900 backdrop-blur-lg lg:backdrop-blur-none lg:bg-opacity-100  bg-opacity-80',
-      )}
-    >
+    <Modal onClose={onCloseModalStorie} isClose={isClose} className={twMerge(' flex flex-col items-center justify-center overflow-hidden', !showClose ? 'bg-transparent' : 'bg-zinc-900 backdrop-blur-lg lg:backdrop-blur-none lg:bg-opacity-100  bg-opacity-80')}>
       <div className="w-full h-full flex">
         <div className="hidden lg:flex flex-col w-[40vh] h-full bg-zinc-800">
           <div className="sticky top-0 bg-zinc-800 p-3 border-b border-b-zinc-700 border-opacity-40">
             {showClose ? (
-              <button
-                onClick={onCloseModalStorie}
-                className="flex items-center justify-center w-9 h-9 rounded-full bg-zinc-900 hover:bg-opacity-50 transition-colors"
-              >
+              <button onClick={onCloseModalStorie} className="flex items-center justify-center w-9 h-9 rounded-full bg-zinc-900 hover:bg-opacity-50 transition-colors">
                 <X size={24} className="text-white" />
               </button>
             ) : (
-              <Link
-                to="/"
-                className="block rounded-md w-fit text-center whitespace-nowrap bg-gradient-to-l from-pink-700 to-pink-400 transition-all duration-100 p-[1px] uppercase text-xs font-semibold"
-              >
-                <div className="px-4 py-[10px] rounded-md  text-center bg-zinc-800 text-pink-600 hover:text-pink-500 transition-all duration-300">
-                  Ir a inicio
-                </div>
+              <Link to="/" className="block rounded-md w-fit text-center whitespace-nowrap bg-gradient-to-l from-pink-700 to-pink-400 transition-all duration-100 p-[1px] uppercase text-xs font-semibold">
+                <div className="px-4 py-[10px] rounded-md  text-center bg-zinc-800 text-pink-600 hover:text-pink-500 transition-all duration-300">Ir a inicio</div>
               </Link>
             )}
           </div>
@@ -94,12 +79,7 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
             <div className="p-4 border-b border-b-zinc-700 border-opacity-40">
               <h2 className="text-xl font-bold mb-2">Todas las historias</h2>
               <div className="flex flex-col gap-2">
-                <button
-                  className={twMerge(
-                    'w-full  flex items-center gap-2 py-3 px-4 rounded-md bg-zinc-700 hover:bg-opacity-60 bg-opacity-30 transition-all duration-300',
-                    true && 'bg-opacity-90',
-                  )}
-                >
+                <button className={twMerge('w-full  flex items-center gap-2 py-3 px-4 rounded-md bg-zinc-700 hover:bg-opacity-60 bg-opacity-30 transition-all duration-300', true && 'bg-opacity-90')}>
                   <div className="min-w-[60px] min-h-[60px] w-[60px] h-[60px] select-none flex items-center border-[3px] border-pink-600 border-opacity-80 hover:border-opacity-100 bg-zinc-800 justify-center rounded-full cursor-pointer transition-all">
                     <img className="block w-full h-full rounded-full" src="/user.webp" alt="usuario" />
                   </div>
@@ -111,12 +91,7 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
                   </div>
                 </button>
 
-                <button
-                  className={twMerge(
-                    'w-full  flex items-center gap-2 py-3 px-4 rounded-md bg-zinc-700 hover:bg-opacity-60 bg-opacity-30 transition-all duration-300',
-                    false && 'bg-opacity-50',
-                  )}
-                >
+                <button className={twMerge('w-full  flex items-center gap-2 py-3 px-4 rounded-md bg-zinc-700 hover:bg-opacity-60 bg-opacity-30 transition-all duration-300', false && 'bg-opacity-50')}>
                   <div className="min-w-[60px] min-h-[60px] w-[60px] h-[60px] select-none flex items-center border-[3px] border-pink-600 border-opacity-80 hover:border-opacity-100 bg-zinc-800 justify-center rounded-full cursor-pointer transition-all">
                     <img className="block w-full h-full rounded-full" src="/user.webp" alt="usuario" />
                   </div>
@@ -128,12 +103,7 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
                   </div>
                 </button>
 
-                <button
-                  className={twMerge(
-                    'w-full  flex items-center gap-2 py-3 px-4 rounded-md bg-zinc-700 hover:bg-opacity-60 bg-opacity-30 transition-all duration-300',
-                    false && 'bg-opacity-50',
-                  )}
-                >
+                <button className={twMerge('w-full  flex items-center gap-2 py-3 px-4 rounded-md bg-zinc-700 hover:bg-opacity-60 bg-opacity-30 transition-all duration-300', false && 'bg-opacity-50')}>
                   <div className="min-w-[60px] min-h-[60px] w-[60px] h-[60px] select-none flex items-center border-[3px] border-pink-600 border-opacity-80 hover:border-opacity-100 bg-zinc-800 justify-center rounded-full cursor-pointer transition-all">
                     <img className="block w-full h-full rounded-full" src="/user.webp" alt="usuario" />
                   </div>
@@ -206,14 +176,14 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
                       <div
                         className="w-full h-full absolute top-0 left-0 -z-10"
                         style={{
-                          backgroundImage: `url("/img/historia-preview.avif")`,
+                          backgroundImage: `url("/img/historia-preview.jpg")`,
                           backgroundPosition: 'center',
                           backgroundSize: 'cover',
                           backgroundRepeat: 'no-repeat',
                           filter: 'blur(100px)',
                         }}
                       />
-                      <img className="w-full h-full object-contain rounded-md block object-center z-10" src="/img/historia-preview.avif" alt="post" />
+                      <img className="w-full h-full object-contain rounded-md block object-center z-10" src="/img/historia-preview.jpg" alt="post" />
                     </div>
                   </div>
                 </div>
@@ -232,16 +202,7 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
                   </div>
                   <div className="flex items-center gap-2 overflow-hidden p-1">
                     <form className="relative w-full h-fit transition-all duration-300">
-                      <input
-                        type="text"
-                        placeholder="Escribe un comentario"
-                        className={twMerge(
-                          'block w-full bg-zinc-700 rounded-full py-3 pl-6 pr-6 text-base text-zinc-200 placeholder:text-zinc-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-zinc-600',
-                          focusComment ? 'pr-11' : 'pr-6',
-                        )}
-                        onFocus={() => setFocusComment(true)}
-                        onBlur={() => setFocusComment(false)}
-                      />
+                      <input type="text" placeholder="Escribe un comentario" className={twMerge('block w-full bg-zinc-700 rounded-full py-3 pl-6 pr-6 text-base text-zinc-200 placeholder:text-zinc-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-zinc-600', focusComment ? 'pr-11' : 'pr-6')} onFocus={() => setFocusComment(true)} onBlur={() => setFocusComment(false)} />
                       {focusComment && (
                         <button className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white transition-all duration-300">
                           <Send size={24} />
@@ -256,76 +217,27 @@ const ModalStorie = ({ onClose, showClose }: ModalStorieProps) => {
                       }}
                     >
                       <button className="hover:scale-110 transition-transform duration-300 select-none">
-                        <img
-                          width={30}
-                          height={30}
-                          draggable={false}
-                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
-                          src={REACTIONS.like.url}
-                          alt={REACTIONS.like.name}
-                        />
+                        <img width={30} height={30} draggable={false} className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none" src={REACTIONS.like.url} alt={REACTIONS.like.name} />
                       </button>
                       <button className="hover:scale-110 transition-transform duration-300 select-none">
-                        <img
-                          width={30}
-                          height={30}
-                          draggable={false}
-                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
-                          src={REACTIONS.love.url}
-                          alt={REACTIONS.love.name}
-                        />
+                        <img width={30} height={30} draggable={false} className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none" src={REACTIONS.love.url} alt={REACTIONS.love.name} />
                       </button>
                       <button className="hover:scale-110 transition-transform duration-300 select-none">
-                        <img
-                          width={30}
-                          height={30}
-                          draggable={false}
-                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
-                          src={REACTIONS.care.url}
-                          alt={REACTIONS.care.name}
-                        />
+                        <img width={30} height={30} draggable={false} className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none" src={REACTIONS.care.url} alt={REACTIONS.care.name} />
                       </button>
                       <button className="hover:scale-110 transition-transform duration-300 select-none">
-                        <img
-                          width={30}
-                          height={30}
-                          draggable={false}
-                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
-                          src={REACTIONS.laugh.url}
-                          alt={REACTIONS.laugh.name}
-                        />
+                        <img width={30} height={30} draggable={false} className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none" src={REACTIONS.laugh.url} alt={REACTIONS.laugh.name} />
                       </button>
                       <button className="hover:scale-110 transition-transform duration-300 select-none">
-                        <img
-                          width={30}
-                          height={30}
-                          draggable={false}
-                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
-                          src={REACTIONS.amazed.url}
-                          alt={REACTIONS.amazed.name}
-                        />
+                        <img width={30} height={30} draggable={false} className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none" src={REACTIONS.amazed.url} alt={REACTIONS.amazed.name} />
                       </button>
 
                       <button className="hover:scale-110 transition-transform duration-300 select-none">
-                        <img
-                          width={30}
-                          height={30}
-                          draggable={false}
-                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
-                          src={REACTIONS.sad.url}
-                          alt={REACTIONS.sad.name}
-                        />
+                        <img width={30} height={30} draggable={false} className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none" src={REACTIONS.sad.url} alt={REACTIONS.sad.name} />
                       </button>
 
                       <button className="hover:scale-110 transition-transform duration-300 select-none">
-                        <img
-                          width={30}
-                          height={30}
-                          draggable={false}
-                          className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none"
-                          src={REACTIONS.angry.url}
-                          alt={REACTIONS.angry.name}
-                        />
+                        <img width={30} height={30} draggable={false} className="min-w-[30px] min-h-[30px] w-[30px] h-[30px] select-none" src={REACTIONS.angry.url} alt={REACTIONS.angry.name} />
                       </button>
                     </div>
                   </div>

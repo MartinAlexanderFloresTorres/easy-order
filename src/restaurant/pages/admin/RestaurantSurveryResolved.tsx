@@ -32,11 +32,6 @@ const RestaurantSurveryResolved = () => {
           <div className="px-4 py-3 flex items-center justify-center text-center flex-1">
             <h3 className="text-2xl font-semibold text-gray-200 uppercase text-center">Encuestas resueltas</h3>
           </div>
-          <div className="px-4 py-3 flex items-center justify-end text-center gap-4 border-l border-l-zinc-700 border-opacity-50">
-            <button className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold" onClick={() => setIsShowSurvey(true)}>
-              Crear encuesta
-            </button>
-          </div>
         </div>
 
         <SurveryTableResolved surveys={surveysResolved} showSurvey={editSurvey} loading={loadingSurveysResolved} />
