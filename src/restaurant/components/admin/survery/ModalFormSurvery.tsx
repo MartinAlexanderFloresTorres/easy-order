@@ -300,7 +300,7 @@ const ModalFormSurvey = ({ onClose, surveyEdit }: ModalFormCategoryProps) => {
                 <img src={restaurant.logo ? restaurant.logo.secure_url : '/img/default-logo.png'} alt={restaurant.name} className="min-w-[50px] min-h-[50px] w-[50px] h-[50px] rounded-full object-cover" />
               </div>
               <div className="px-4 py-3 flex items-center justify-center text-center flex-1">
-                <h3 className="text-2xl font-semibold text-gray-200 uppercase text-center">{surveyEdit ? 'Actualizar categoría' : 'Crear categoría'}</h3>
+                <h3 className="text-2xl font-semibold text-gray-200 uppercase text-center">{surveyEdit ? 'Actualizar encuesta' : 'Crear encuesta'}</h3>
               </div>
               <div className="px-4 py-3 flex items-center justify-end text-center gap-4 border-l border-l-zinc-700 border-opacity-50">
                 <button type="button" className="min-w-[40px] min-h-[40px] w-[40px] h-[40px] flex items-center justify-center px2-4 py- rounded-full bg-zinc-700 bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 text-gray-300" onClick={onCloseModal}>
@@ -311,7 +311,7 @@ const ModalFormSurvey = ({ onClose, surveyEdit }: ModalFormCategoryProps) => {
 
             <div className=" bg-zinc-900 bg-opacity-80 md:flex-1">
               <div className="px-4 py-3 border-b border-b-zinc-700 border-opacity-50 flex items-center justify-center text-center">
-                <p className="font-normal text-center text-gray-300">{surveyEdit ? 'Actualiza los datos de la categoría' : 'Comienza a crear tus categorías para tus menús'}</p>
+                <p className="font-normal text-center text-gray-300">{surveyEdit ? 'Actualiza los datos de la encuesta' : 'Comienza a crear tus encuesta para tus clientes'}</p>
               </div>
               <form className="p-5 flex-col space-y-5" onSubmit={onSubmit}>
                 <div className="flex flex-col space-y-1">
