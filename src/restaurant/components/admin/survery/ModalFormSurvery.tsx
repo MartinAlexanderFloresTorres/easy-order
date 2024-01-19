@@ -225,7 +225,7 @@ const ModalFormSurvey = ({ onClose, surveyEdit }: ModalFormCategoryProps) => {
                 },
               ],
               typeQuestion,
-              typeAnswer: 'text',
+              typeAnswer: 'radio',
             };
           }
 
@@ -402,11 +402,11 @@ const ModalFormSurvey = ({ onClose, surveyEdit }: ModalFormCategoryProps) => {
                               ) : (
                                 <>
                                   <option className="bg-zinc-900" value="radio">
-                                    Radio
+                                    Radio (Una opción)
                                   </option>
 
                                   <option className="bg-zinc-900" value="checkbox">
-                                    Checkbox
+                                    Checkbox (Mas de una opción)
                                   </option>
                                 </>
                               )}
@@ -422,26 +422,22 @@ const ModalFormSurvey = ({ onClose, surveyEdit }: ModalFormCategoryProps) => {
                               </div>
 
                               <div className="flex flex-col space-y-2">
-                                {question.options.map((option, index) => (
+                                {question.options.map((option) => (
                                   <div key={option.id} className="flex flex-col space-y-2">
-                                    <div className="flex flex-col space-y-1">
-                                      <label htmlFor={option.id} className="text-sm font-semibold text-gray-400">
-                                        Opcion {index + 1}
-                                      </label>
-
+                                    <div className="flex items-center gap-2">
                                       <div className="flex gap-2 items-center">
                                         <input
                                           type={question.typeAnswer}
-                                          disabled={question.typeQuestion === 'open'}
+                                          disabled
                                           name={option.id}
                                           id={option.id}
                                           autoComplete="off"
                                           placeholder={question.typeAnswer === 'text' ? 'Ej: Escribir opcion' : question.typeAnswer === 'number' ? 'Ej: 18' : 'Ej: 2021-08-05'}
                                           value={option.option}
                                           onChange={(e) => updateOption(question.id, option.id, e.target.value)}
-                                          className="w-full px-4 py-2 border border-zinc-700 bg-zinc-900 bg-opacity-50 rounded-lg focus:outline-none focus:border-zinc-600 placeholder:text-zinc-500"
+                                          className="w-fit px-4 py-2 border border-zinc-700 bg-zinc-900 bg-opacity-50 rounded-lg focus:outline-none focus:border-zinc-600 placeholder:text-zinc-500"
                                         />
-                                        {(question.typeAnswer === 'radio' || question.typeAnswer === 'checkbox') && <input type="text" name={option.id} id={option.id} onChange={(e) => updateOption(question.id, option.id, e.target.value)} placeholder="Nombre" className="w-fit px-4 py-2 border border-zinc-700 bg-zinc-900 bg-opacity-50 rounded-lg focus:outline-none focus:border-zinc-600 placeholder:text-zinc-500" />}
+                                        {(question.typeAnswer === 'radio' || question.typeAnswer === 'checkbox') && <input type="text" name={option.id} id={option.id} autoComplete="off" value={option.option} onChange={(e) => updateOption(question.id, option.id, e.target.value)} placeholder="Nombre" className="w-fit px-4 py-2 border border-zinc-700 bg-zinc-900 bg-opacity-50 rounded-lg focus:outline-none focus:border-zinc-600 placeholder:text-zinc-500" />}
                                         <button type="button" className="w-fit whitespace-nowrap px-4 py-3 text-pink-600 hover:text-pink-700 transition-all duration-300 rounded-md font-semibold" onClick={() => removeOption(question.id, option.id)}>
                                           <Trash size={20} />
                                         </button>

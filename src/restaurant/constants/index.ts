@@ -121,7 +121,7 @@ export const LINKS_MORE: { name: string; link: string }[] = [
   },
   {
     link: 'survey',
-    name: 'Encuestas',
+    name: 'Mis encuestas',
   },
   {
     link: 'survey-resolved',
