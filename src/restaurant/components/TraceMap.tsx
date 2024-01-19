@@ -105,7 +105,7 @@ const TraceMap = ({ lat, lng, deliveryAddress, restaurant }: TraceMapProps) => {
               'line-join': 'round',
             },
             paint: {
-              'line-color': '#df448a',
+              'line-color': 'rgb(255, 168, 208)',
               'line-width': 3,
             },
           });
@@ -141,7 +141,7 @@ const TraceMap = ({ lat, lng, deliveryAddress, restaurant }: TraceMapProps) => {
         </div>
       </div>
 
-      <div ref={mapRef} className="w-full h-[400px]"></div>
+      <div ref={mapRef} className="w-full h-[600px]"></div>
 
       <div className="flex gap-4 items-center flex-wrap justify-end mt-4">
         <button

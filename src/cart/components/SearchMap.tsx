@@ -98,12 +98,18 @@ function SearchMap({ onNext, address, DEFAULT_CENTER_MAP, setAddress, search, se
 
       // Actualizar centro del mapa
       mapBoxRef.current.flyTo({ center: lngLat });
+
+      // Actualizar referencia
+      lngLatRef.current = [lngLat.lng, lngLat.lat];
     });
 
     marketRef.current = newMarker;
 
     // Actualizar centro del mapa
     mapBoxRef.current.flyTo({ center: lngLat, zoom: 12 });
+
+    // Actualizar referencia
+    lngLatRef.current = lngLat;
   };
 
   useEffect(() => {
@@ -146,8 +152,6 @@ function SearchMap({ onNext, address, DEFAULT_CENTER_MAP, setAddress, search, se
     if (search) {
       const res = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${search}.json?access_token=${mapboxgl.accessToken}`);
       const data = await res.json();
-      console.log(data);
-
       const [lng, lat] = data.features[0].center;
       if (!mapBoxRef.current) return;
       mapBoxRef.current.setCenter([lng, lat]);

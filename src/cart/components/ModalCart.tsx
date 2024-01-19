@@ -44,10 +44,8 @@ const ModalCart = ({ onClose }: ModalCartProps) => {
     if (loadingOrder) return toast.error('Ya se está realizando un pedido, por favor espere');
     if (!authenticated) return showInfoAuthentication();
     if (carts.length === 0) return toast.error('No hay productos en el carrito');
-    if (carts.some((cart) => cart.items.some((item) => item.quantity === 0)))
-      return toast.error('Hay un menu sin cantidad, por favor elimine el menu');
-    if (carts.some((cart) => cart.items.some((item) => item.quantity > item.stock)))
-      return toast.error('Algunos productos no tienen stock disponible');
+    if (carts.some((cart) => cart.items.some((item) => item.quantity === 0))) return toast.error('Hay un menu sin cantidad, por favor elimine el menu');
+    if (carts.some((cart) => cart.items.some((item) => item.quantity > item.stock))) return toast.error('Algunos productos no tienen stock disponible');
 
     if (!address || !lngLatRef.current) return toast.error('No se ha seleccionado una dirección de entrega');
 
@@ -74,8 +72,8 @@ const ModalCart = ({ onClose }: ModalCartProps) => {
     for (const cart of carts) {
       await generateOrder(cart, {
         address,
-        latitude: lngLatRef.current[1],
         longitude: lngLatRef.current[0],
+        latitude: lngLatRef.current[1],
       });
     }
 
@@ -102,10 +100,8 @@ const ModalCart = ({ onClose }: ModalCartProps) => {
     if (loadingOrder) return toast.error('Ya se está realizando una orden, por favor espere');
     if (!authenticated) return showInfoAuthentication();
     if (carts.length === 0) return toast.error('No hay productos en el carrito');
-    if (carts.some((cart) => cart.items.some((item) => item.quantity === 0)))
-      return toast.error('Hay un menu sin cantidad, por favor elimine el menu');
-    if (carts.some((cart) => cart.items.some((item) => item.quantity > item.stock)))
-      return toast.error('Algunos productos no tienen stock disponible');
+    if (carts.some((cart) => cart.items.some((item) => item.quantity === 0))) return toast.error('Hay un menu sin cantidad, por favor elimine el menu');
+    if (carts.some((cart) => cart.items.some((item) => item.quantity > item.stock))) return toast.error('Algunos productos no tienen stock disponible');
 
     const { isConfirmed } = await Swal.fire({
       title: '¿Deseas confirmar la orden?',
@@ -238,22 +234,13 @@ const ModalCart = ({ onClose }: ModalCartProps) => {
           <div className="animate-fade-in select-none border border-zinc-700 border-opacity-50 backdrop-blur-sm max-w-3xl w-full mx-auto overflow-auto">
             <div className="sticky top-0 z-10 backdrop-blur-sm border-b border-b-zinc-700 border-opacity-50 bg-zinc-800 bg-opacity-80 flex items-stretch justify-between text-center">
               <div className="px-4 py-3 flex items-center text-center gap-4 border-r border-r-zinc-700 border-opacity-50">
-                <img
-                  draggable={false}
-                  className="min-w-[50px] min-h-[50px] w-[50px] h-[50px] object-cover"
-                  src="/img/carrito-de-compras.png"
-                  alt="Carrito de Compras"
-                />
+                <img draggable={false} className="min-w-[50px] min-h-[50px] w-[50px] h-[50px] object-cover" src="/img/carrito-de-compras.png" alt="Carrito de Compras" />
               </div>
               <div className="px-4 py-3 flex items-center justify-center text-center flex-1">
                 <h3 className="text-2xl font-semibold text-gray-200 uppercase text-center">Orden en mesa</h3>
               </div>
               <div className="px-4 py-3 flex items-center justify-end text-center gap-4 border-l border-l-zinc-700 border-opacity-50">
-                <button
-                  type="button"
-                  className="min-w-[40px] min-h-[40px] w-[40px] h-[40px] flex items-center justify-center px2-4 py- rounded-full bg-zinc-700 bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 text-gray-300"
-                  onClick={onCloseModal}
-                >
+                <button type="button" className="min-w-[40px] min-h-[40px] w-[40px] h-[40px] flex items-center justify-center px2-4 py- rounded-full bg-zinc-700 bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 text-gray-300" onClick={onCloseModal}>
                   <X size={24} />
                 </button>
               </div>
@@ -283,42 +270,26 @@ const ModalCart = ({ onClose }: ModalCartProps) => {
                           </button>
                         )}
 
-                        <button
-                          type="button"
-                          className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-zinc-800 hover:bg-zinc-700 transition-all duration-300 rounded-md font-semibold"
-                          onClick={() => clearCart()}
-                        >
+                        <button type="button" className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-zinc-800 hover:bg-zinc-700 transition-all duration-300 rounded-md font-semibold" onClick={() => clearCart()}>
                           Vaciar carrito
                         </button>
 
-                        <button
-                          className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-zinc-800 hover:bg-zinc-700 transition-all duration-300 rounded-md font-semibold"
-                          onClick={closeOrderTable}
-                        >
+                        <button className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-zinc-800 hover:bg-zinc-700 transition-all duration-300 rounded-md font-semibold" onClick={closeOrderTable}>
                           Volver
                         </button>
 
                         {authenticated && (
-                          <button
-                            className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold"
-                            onClick={newTableOrder}
-                          >
+                          <button className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold" onClick={newTableOrder}>
                             Ordenar en mesa
                           </button>
                         )}
 
                         {!authenticated && (
                           <>
-                            <Link
-                              to="/auth/login"
-                              className="w-full md:w-fit whitespace-nowrap px-6 py-3 text-pink-500 border border-pink-500 hover:bg-pink-800 hover:bg-opacity-20 transition-all duration-300 rounded-md font-semibold"
-                            >
+                            <Link to="/auth/login" className="w-full md:w-fit whitespace-nowrap px-6 py-3 text-pink-500 border border-pink-500 hover:bg-pink-800 hover:bg-opacity-20 transition-all duration-300 rounded-md font-semibold">
                               Iniciar sesión
                             </Link>
-                            <Link
-                              to="/auth/register"
-                              className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold"
-                            >
+                            <Link to="/auth/register" className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold">
                               Registrarse
                             </Link>
                           </>
@@ -332,11 +303,7 @@ const ModalCart = ({ onClose }: ModalCartProps) => {
                         Empieza a agregar productos a tu carrito y disfruta de la mejor comida de <span className="font-extrabold">ORDEN FACIL</span>
                       </p>
                       <SmilePlus size={40} className="mx-auto text-gray-400 mb-4" />
-                      <Link
-                        to="/menus"
-                        className="block mx-auto w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold"
-                        onClick={onCloseModal}
-                      >
+                      <Link to="/menus" className="block mx-auto w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold" onClick={onCloseModal}>
                         Buscar Menús
                       </Link>
                     </div>
@@ -349,22 +316,13 @@ const ModalCart = ({ onClose }: ModalCartProps) => {
           <div className="animate-fade-in select-none border border-zinc-700 border-opacity-50 backdrop-blur-sm max-w-3xl w-full mx-auto overflow-auto">
             <div className="sticky top-0 z-10 backdrop-blur-sm border-b border-b-zinc-700 border-opacity-50 bg-zinc-800 bg-opacity-80 flex items-stretch justify-between text-center">
               <div className="px-4 py-3 flex items-center text-center gap-4 border-r border-r-zinc-700 border-opacity-50">
-                <img
-                  draggable={false}
-                  className="min-w-[50px] min-h-[50px] w-[50px] h-[50px] object-cover"
-                  src="/img/carrito-de-compras.png"
-                  alt="Carrito de Compras"
-                />
+                <img draggable={false} className="min-w-[50px] min-h-[50px] w-[50px] h-[50px] object-cover" src="/img/carrito-de-compras.png" alt="Carrito de Compras" />
               </div>
               <div className="px-4 py-3 flex items-center justify-center text-center flex-1">
                 <h3 className="text-2xl font-semibold text-gray-200 uppercase text-center">Carrito</h3>
               </div>
               <div className="px-4 py-3 flex items-center justify-end text-center gap-4 border-l border-l-zinc-700 border-opacity-50">
-                <button
-                  type="button"
-                  className="min-w-[40px] min-h-[40px] w-[40px] h-[40px] flex items-center justify-center px2-4 py- rounded-full bg-zinc-700 bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 text-gray-300"
-                  onClick={onCloseModal}
-                >
+                <button type="button" className="min-w-[40px] min-h-[40px] w-[40px] h-[40px] flex items-center justify-center px2-4 py- rounded-full bg-zinc-700 bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 text-gray-300" onClick={onCloseModal}>
                   <X size={24} />
                 </button>
               </div>
@@ -382,56 +340,22 @@ const ModalCart = ({ onClose }: ModalCartProps) => {
                   {carts.length ? (
                     <>
                       <div className="flex items-center justify-center gap-2 p-4">
-                        <button
-                          className={twMerge(
-                            'w-[40px] h-[40px] min-w-[40px] min-h-[40px] font-bold text-center border-2 border-pink-700 flex items-center justify-center text-zinc-300 hover:text-zinc-200 disabled:cursor-not-allowed disabled:hover:bg-transparent hover:bg-pink-600 transition-all duration-300 rounded-full',
-                            tabActive === 1 && 'bg-pink-600',
-                          )}
-                          onClick={() => setTabActive(1)}
-                          disabled={carts.length === 0}
-                        >
+                        <button className={twMerge('w-[40px] h-[40px] min-w-[40px] min-h-[40px] font-bold text-center border-2 border-pink-700 flex items-center justify-center text-zinc-300 hover:text-zinc-200 disabled:cursor-not-allowed disabled:hover:bg-transparent hover:bg-pink-600 transition-all duration-300 rounded-full', tabActive === 1 && 'bg-pink-600')} onClick={() => setTabActive(1)} disabled={carts.length === 0}>
                           1
                         </button>
                         <div className="w-1/2 h-1 bg-zinc-700"></div>
-                        <button
-                          className={twMerge(
-                            'w-[40px] h-[40px] min-w-[40px] min-h-[40px] font-bold text-center border-2 border-pink-700 flex items-center justify-center text-zinc-300 hover:text-zinc-200 disabled:cursor-not-allowed disabled:hover:bg-transparent hover:bg-pink-600 transition-all duration-300 rounded-full',
-                            tabActive === 2 && 'bg-pink-600',
-                          )}
-                          onClick={() => setTabActive(2)}
-                          disabled={invalidFieldsTab1()}
-                        >
+                        <button className={twMerge('w-[40px] h-[40px] min-w-[40px] min-h-[40px] font-bold text-center border-2 border-pink-700 flex items-center justify-center text-zinc-300 hover:text-zinc-200 disabled:cursor-not-allowed disabled:hover:bg-transparent hover:bg-pink-600 transition-all duration-300 rounded-full', tabActive === 2 && 'bg-pink-600')} onClick={() => setTabActive(2)} disabled={invalidFieldsTab1()}>
                           2
                         </button>
                         <div className="w-1/2 h-1 bg-zinc-700"></div>
-                        <button
-                          className={twMerge(
-                            'w-[40px] h-[40px] min-w-[40px] min-h-[40px] font-bold text-center border-2 border-pink-700 flex items-center justify-center text-zinc-300 hover:text-zinc-200 disabled:cursor-not-allowed disabled:hover:bg-transparent hover:bg-pink-600 transition-all duration-300 rounded-full',
-                            tabActive === 3 && 'bg-pink-600',
-                          )}
-                          onClick={() => setTabActive(3)}
-                          disabled={invalidFieldsTab2()}
-                        >
+                        <button className={twMerge('w-[40px] h-[40px] min-w-[40px] min-h-[40px] font-bold text-center border-2 border-pink-700 flex items-center justify-center text-zinc-300 hover:text-zinc-200 disabled:cursor-not-allowed disabled:hover:bg-transparent hover:bg-pink-600 transition-all duration-300 rounded-full', tabActive === 3 && 'bg-pink-600')} onClick={() => setTabActive(3)} disabled={invalidFieldsTab2()}>
                           3
                         </button>
                       </div>
 
                       {tabActive === 1 && <CartList showCoupon={false} />}
 
-                      {tabActive === 2 && (
-                        <SearchMap
-                          DEFAULT_CENTER_MAP={DEFAULT_CENTER_MAP}
-                          search={search}
-                          setSearch={setSearch}
-                          address={address}
-                          setAddress={setAddress}
-                          mapRef={mapRef}
-                          mapBoxRef={mapBoxRef}
-                          marketRef={marketRef}
-                          lngLatRef={lngLatRef}
-                          onNext={() => setTabActive(3)}
-                        />
-                      )}
+                      {tabActive === 2 && <SearchMap DEFAULT_CENTER_MAP={DEFAULT_CENTER_MAP} search={search} setSearch={setSearch} address={address} setAddress={setAddress} mapRef={mapRef} mapBoxRef={mapBoxRef} marketRef={marketRef} lngLatRef={lngLatRef} onNext={() => setTabActive(3)} />}
 
                       {tabActive === 3 && (
                         <>
@@ -440,11 +364,7 @@ const ModalCart = ({ onClose }: ModalCartProps) => {
                           <div className="p-4 border-t border-t-zinc-700 border-opacity-50">
                             <div className="flex items-center justify-between mb-2">
                               <p className="text-gray-400">Dirección de entrega</p>
-                              <button
-                                type="button"
-                                className="text-pink-500 hover:text-pink-600 transition-all duration-300"
-                                onClick={() => setTabActive(2)}
-                              >
+                              <button type="button" className="text-pink-500 hover:text-pink-600 transition-all duration-300" onClick={() => setTabActive(2)}>
                                 Cambiar
                               </button>
                             </div>
@@ -468,25 +388,15 @@ const ModalCart = ({ onClose }: ModalCartProps) => {
 
                         {tabActive === 1 && (
                           <>
-                            <button
-                              type="button"
-                              className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-zinc-800 hover:bg-zinc-700 transition-all duration-300 rounded-md font-semibold"
-                              onClick={() => clearCart()}
-                            >
+                            <button type="button" className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-zinc-800 hover:bg-zinc-700 transition-all duration-300 rounded-md font-semibold" onClick={() => clearCart()}>
                               Vaciar carrito
                             </button>
                             {authenticated && (
                               <>
-                                <button
-                                  className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold"
-                                  onClick={openOrderTable}
-                                >
+                                <button className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold" onClick={openOrderTable}>
                                   Order en mesa
                                 </button>
-                                <button
-                                  className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold"
-                                  onClick={() => setTabActive(2)}
-                                >
+                                <button className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold" onClick={() => setTabActive(2)}>
                                   Continua Delivery
                                 </button>
                               </>
@@ -494,44 +404,29 @@ const ModalCart = ({ onClose }: ModalCartProps) => {
                           </>
                         )}
                         {tabActive === 2 && (
-                          <button
-                            className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-zinc-800 hover:bg-zinc-700 transition-all duration-300 rounded-md font-semibold"
-                            onClick={() => setTabActive(1)}
-                          >
+                          <button className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-zinc-800 hover:bg-zinc-700 transition-all duration-300 rounded-md font-semibold" onClick={() => setTabActive(1)}>
                             Volver
                           </button>
                         )}
 
                         {tabActive === 3 && (
-                          <button
-                            className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-zinc-800 hover:bg-zinc-700 transition-all duration-300 rounded-md font-semibold"
-                            onClick={() => setTabActive(2)}
-                          >
+                          <button className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-zinc-800 hover:bg-zinc-700 transition-all duration-300 rounded-md font-semibold" onClick={() => setTabActive(2)}>
                             Volver
                           </button>
                         )}
 
                         {authenticated && tabActive === 3 && (
-                          <button
-                            className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold"
-                            onClick={newOrderOnline}
-                          >
+                          <button className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold" onClick={newOrderOnline}>
                             Ordenar delivery
                           </button>
                         )}
 
                         {!authenticated && (
                           <>
-                            <Link
-                              to="/auth/login"
-                              className="w-full md:w-fit whitespace-nowrap px-6 py-3 text-pink-500 border border-pink-500 hover:bg-pink-800 hover:bg-opacity-20 transition-all duration-300 rounded-md font-semibold"
-                            >
+                            <Link to="/auth/login" className="w-full md:w-fit whitespace-nowrap px-6 py-3 text-pink-500 border border-pink-500 hover:bg-pink-800 hover:bg-opacity-20 transition-all duration-300 rounded-md font-semibold">
                               Iniciar sesión
                             </Link>
-                            <Link
-                              to="/auth/register"
-                              className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold"
-                            >
+                            <Link to="/auth/register" className="w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold">
                               Registrarse
                             </Link>
                           </>
@@ -545,11 +440,7 @@ const ModalCart = ({ onClose }: ModalCartProps) => {
                         Empieza a agregar productos a tu carrito y disfruta de la mejor comida de <span className="font-extrabold">ORDEN FACIL</span>
                       </p>
                       <SmilePlus size={40} className="mx-auto text-gray-400 mb-4" />
-                      <Link
-                        to="/menus"
-                        className="block mx-auto w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold"
-                        onClick={onCloseModal}
-                      >
+                      <Link to="/menus" className="block mx-auto w-full md:w-fit whitespace-nowrap px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-all duration-300 rounded-md font-semibold" onClick={onCloseModal}>
                         Buscar Menús
                       </Link>
                     </div>

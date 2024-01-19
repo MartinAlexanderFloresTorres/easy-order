@@ -3,7 +3,7 @@
 import { createContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { Category, Coupon, Menu, Restaurant } from '@/restaurant/interfaces';
+import { Category, Coupon, Menu, Restaurant, Survey, SurveyResolved } from '@/restaurant/interfaces';
 import useAccount from '@/account/hooks/useAccount';
 import ClientAxios from '@/config/ClientAxios';
 import { ErrorMessage } from '@/shared/interfaces';
@@ -27,6 +27,13 @@ interface RestaurantContextProps {
   menus: Menu[];
   loadingMenus: boolean;
   sincronizeMenus: (menu: Menu, isNew: boolean) => void;
+
+  surveys: Survey[];
+  loadingSurveys: boolean;
+  sincronizeSurveys: (survey: Survey, isNew: boolean) => void;
+
+  surveysResolved: SurveyResolved[];
+  loadingSurveysResolved: boolean;
 }
 
 export const RestaurantContext = createContext<RestaurantContextProps>({
@@ -47,6 +54,13 @@ export const RestaurantContext = createContext<RestaurantContextProps>({
   menus: [],
   loadingMenus: true,
   sincronizeMenus: () => {},
+
+  surveys: [],
+  loadingSurveys: true,
+  sincronizeSurveys: () => {},
+
+  surveysResolved: [],
+  loadingSurveysResolved: true,
 });
 
 interface RestaurantProviderProps {
@@ -61,6 +75,11 @@ const RestaurantProvider = ({ children }: RestaurantProviderProps) => {
   const [activeCategories, setActiveCategories] = useState<Category[]>([]);
   const [menus, setMenus] = useState<Menu[]>([]);
   const [loadingMenus, setLoadingMenus] = useState(true);
+  const [surveys, setSurveys] = useState<Survey[]>([]);
+  const [loadingSurveys, setLoadingSurveys] = useState(true);
+
+  const [surveysResolved, setSurveysResolved] = useState<SurveyResolved[]>([]);
+  const [loadingSurveysResolved, setLoadingSurveysResolved] = useState(true);
 
   const [coupons, setCoupons] = useState<Coupon[]>([]);
   const [loadingCoupons, setLoadingCoupons] = useState(true);
@@ -151,6 +170,42 @@ const RestaurantProvider = ({ children }: RestaurantProviderProps) => {
         }
       })();
     }
+
+    if (pathname.includes(`/panel/${provider}/survey`) && restaurant) {
+      (async () => {
+        try {
+          const { data } = await ClientAxios.get<Survey[]>(`/survey/${restaurant._id}`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+            },
+          });
+
+          setSurveys(data);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoadingSurveys(false);
+        }
+      })();
+    }
+
+    if (pathname.includes(`/panel/${provider}/survey-resolved`) && restaurant) {
+      (async () => {
+        try {
+          const { data } = await ClientAxios.get<SurveyResolved[]>(`/survey/resolved/${restaurant._id}`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+            },
+          });
+
+          setSurveysResolved(data);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoadingSurveysResolved(false);
+        }
+      })();
+    }
   }, [pathname, restaurant]);
 
   useEffect(() => {
@@ -207,6 +262,24 @@ const RestaurantProvider = ({ children }: RestaurantProviderProps) => {
       return newCoupons;
     });
   };
+
+  const sincronizeSurveys = (survey: Survey, isNew: boolean) => {
+    if (isNew) {
+      setSurveys((surveys) => [...surveys, survey]);
+      return;
+    }
+
+    setSurveys((surveys) => {
+      const newSurveys = surveys.map((surveyMap) => {
+        if (surveyMap._id === survey._id) {
+          return survey;
+        }
+        return surveyMap;
+      });
+      return newSurveys;
+    });
+  };
+
   return (
     <RestaurantContext.Provider
       value={{
@@ -225,13 +298,16 @@ const RestaurantProvider = ({ children }: RestaurantProviderProps) => {
         coupons,
         loadingCoupons,
         sincronizeCoupons,
+
+        surveys,
+        loadingSurveys,
+        sincronizeSurveys,
+
+        surveysResolved,
+        loadingSurveysResolved,
       }}
     >
-      {loadingRestaurant ? (
-        <Loading className="h-tablet-view xl:h-view" title="Verificando permisos" description="Espere un momento por favor ..." />
-      ) : (
-        <>{checkRestaurantPermits ? children : null}</>
-      )}
+      {loadingRestaurant ? <Loading className="h-tablet-view xl:h-view" title="Verificando permisos" description="Espere un momento por favor ..." /> : <>{checkRestaurantPermits ? children : null}</>}
     </RestaurantContext.Provider>
   );
 };

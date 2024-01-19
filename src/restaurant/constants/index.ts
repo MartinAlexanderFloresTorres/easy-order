@@ -120,6 +120,14 @@ export const LINKS_MORE: { name: string; link: string }[] = [
     name: 'Ventas',
   },
   {
+    link: 'survey',
+    name: 'Encuestas',
+  },
+  {
+    link: 'survey-resolved',
+    name: 'Encuestas resueltas',
+  },
+  {
     link: 'reports',
     name: 'Reportes',
   },
@@ -132,43 +140,6 @@ export const LINKS_MORE: { name: string; link: string }[] = [
     name: 'Configuración',
   },
 ];
-
-/*   <Link
-                to={`/panel/${restaurant.slug}/online-orders`}
-                className="px-5 py-2 text-sm font-semibold rounded-md text-zinc-300 hover:bg-zinc-800 hover:bg-opacity-70 transition-colors duration-300"
-                onClick={closeShowMore}
-              >
-                Pedidos
-              </Link>
-              <Link
-                to={`/panel/${restaurant.slug}/table-orders`}
-                className="px-5 py-2 text-sm font-semibold rounded-md text-zinc-300 hover:bg-zinc-800 hover:bg-opacity-70 transition-colors duration-300"
-                onClick={closeShowMore}
-              >
-                Ordenes
-              </Link>
-              <Link
-                to={`/panel/${restaurant.slug}/menu`}
-                className="px-5 py-2 text-sm font-semibold rounded-md text-zinc-300 hover:bg-zinc-800 hover:bg-opacity-70 transition-colors duration-300"
-                onClick={closeShowMore}
-              >
-                Menu
-              </Link>
-
-              <Link
-                to={`/panel/${restaurant.slug}/stories`}
-                className="px-5 py-2 text-sm font-semibold rounded-md text-zinc-300 hover:bg-zinc-800 hover:bg-opacity-70 transition-colors duration-300"
-                onClick={closeShowMore}
-              >
-                Historias
-              </Link>
-              <Link
-                to={`/panel/${restaurant.slug}/publications`}
-                className="px-5 py-2 text-sm font-semibold rounded-md text-zinc-300 hover:bg-zinc-800 hover:bg-opacity-70 transition-colors duration-300"
-                onClick={closeShowMore}
-              >
-                Publicaciones
-              </Link> */
 
 export const LINKS_PREVIEW_RESTAURANT: { name: string; link: string }[] = [
   {

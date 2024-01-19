@@ -4,7 +4,7 @@ import { OrderStatus, PaymentStatus } from '@/restaurant/types';
 export interface OrderPayment {
   _id: string;
   user: User;
-  restaurant: Restaurant;
+  restaurant: OrderRestaurant;
   status: OrderStatus;
   shippingAddress: string;
   latitude: number;
@@ -16,20 +16,20 @@ export interface OrderPayment {
   total: number;
   paymentMethod: string;
   paymentStatus: PaymentStatus;
-  items: Item[];
+  items: OrderItem[];
   createdAt: string;
   updatedAt: string;
 }
 
-export interface Item {
-  menu: Menu;
+export interface OrderItem {
+  menu: OrderMenu;
   discount: number;
   price: number;
   quantity: number;
   _id: string;
 }
 
-export interface Menu {
+export interface OrderMenu {
   _id: string;
   name: string;
   images: Logo[];
@@ -49,7 +49,7 @@ export interface Logo {
   _id: string;
 }
 
-export interface Restaurant {
+export interface OrderRestaurant {
   _id: string;
   name: string;
   address: string;
@@ -59,11 +59,11 @@ export interface Restaurant {
   openingHours: string;
   closingTime: string;
   logo: Logo;
-  paymentMethods: PaymentMethod[];
+  paymentMethods: OrderPaymentMethod[];
   slug: string;
 }
 
-export interface PaymentMethod {
+export interface OrderPaymentMethod {
   name: string;
   image: string;
   _id: string;

@@ -55,6 +55,9 @@ import RestaurantCouponsPage from './restaurant/pages/admin/RestaurantCouponsPag
 import TableOrdersPage from './account/pages/TableOrdersPage';
 import TableOrderPaymentPage from './restaurant/pages/public/TableOrderPaymentPage';
 import RestaurantTableOrdersPage from './restaurant/pages/admin/RestaurantTableOrdersPage';
+import SurveyPage from './restaurant/pages/private/SurveyPage';
+import RestaurantSurveryPage from './restaurant/pages/admin/RestaurantSurveryPage';
+import RestaurantSurveryResolved from './restaurant/pages/admin/RestaurantSurveryResolved';
 
 const App = () => {
   return (
@@ -74,6 +77,10 @@ const App = () => {
                   <Route path="confirmation/:token" element={<ConfirmationPage />} />
                   <Route path="confirmation/:token/:code" element={<AutocConfirmationPage />} />
                 </Route>
+
+                {/* survey */}
+                <Route path="survey/:surveyId" element={<SurveyPage />} />
+
                 {/* LAYOUT PRINCIPAL */}
                 <Route path="/" element={<MainLayout />}>
                   <Route path="subscription-plans" element={<SubscriptionPlansPage />} />
@@ -132,6 +139,8 @@ const App = () => {
                   <Route path="sales" element={<RestaurantSalesPage />} />
                   <Route path="subscription-plan" element={<RestaurantSubscriptionPlanPage />} />
                   <Route path="reports" element={<RestaurantReportsPage />} />
+                  <Route path="survey" element={<RestaurantSurveryPage />} />
+                  <Route path="survey-resolved" element={<RestaurantSurveryResolved />} />
                   <Route path="settings" element={<RestaurantSettings />} />
                 </Route>
 

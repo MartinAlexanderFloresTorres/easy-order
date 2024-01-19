@@ -12,5 +12,7 @@ export * from './order-by-restaurant';
 export * from './table-order-by-restaurant';
 export * from './order-payment';
 export * from './table-order-payment';
+export * from './survey';
 export * from './coupon';
 export * from './new-coupon';
+export * from './new-survey';

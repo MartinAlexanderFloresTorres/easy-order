@@ -232,6 +232,7 @@ const OrderPaymentPage = () => {
                   </div>
                 )}
 
+                {order.status === 'EMITTED' && <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-blue-500 text-blue-500 border border-blue-500 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">Emitido</div>}
                 {order.status === 'READY' && <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-blue-500 text-blue-500 border border-blue-500 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">Orden lista</div>}
 
                 {order.status === 'DELIVERED' && <div className="flex flex-col items-center justify-center text-center min-w-[100px] text-sm transition-colors duration-300 rounded-md px-4 py-1 font-semibold bg-blue-500 text-blue-500 border border-blue-500 bg-opacity-10 border-opacity-40 hover:bg-opacity-20">Entregado</div>}
