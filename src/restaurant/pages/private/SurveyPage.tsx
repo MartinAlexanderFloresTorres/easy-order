@@ -1,9 +1,10 @@
+import useAccount from '@/account/hooks/useAccount';
 import ClientAxios from '@/config/ClientAxios';
 import { QuestionAnswer, SurveyRestaurant } from '@/restaurant/interfaces';
 import Loading from '@/shared/components/Loading';
 import { FormEvent, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
 const SurveyPage = () => {
@@ -13,28 +14,33 @@ const SurveyPage = () => {
   const [surveyQuestions, setSurveyQuestions] = useState<QuestionAnswer[]>([]);
 
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const { surveyId } = useParams<{ surveyId: string }>();
+  const { loadingAuthenticate, authenticated } = useAccount();
 
   useEffect(() => {
     (async () => {
       try {
+        if (loadingAuthenticate) return;
+        if (!authenticated && !loadingAuthenticate) return navigate('/auth/login', { state: { from: pathname } });
+
         const { data } = await ClientAxios.get<SurveyRestaurant>(`/survey/by/${surveyId}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('jwt')}`,
           },
         });
-        console.log(data);
+
         setSurvey(data);
         setSurveyQuestions(data.questions.map((question) => ({ ...question, answer: '', options: question.options.map((option) => ({ ...option, checked: false })) })));
+        setLoading(false);
       } catch (error) {
         console.log(error);
-        toast.error('No se pudo cargar la encuesta');
+        toast.error('Encuesta no encontrada');
         navigate('/');
-      } finally {
         setLoading(false);
       }
     })();
-  }, [surveyId, navigate]);
+  }, [surveyId, navigate, pathname, loadingAuthenticate, authenticated]);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -144,7 +150,7 @@ const SurveyPage = () => {
     return <Loading className="p-10" title="Cargando encuesta..." description="Espere un momento mientras se carga la encuesta." />;
   }
 
-  if (!survey) return;
+  if (!survey) return null;
 
   if (loadingSubmit) {
     return <Loading className="p-10" title="Enviando encuesta..." description="Espere un momento mientras se envia la encuesta." />;
